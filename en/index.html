@@ -200,7 +200,7 @@
     <div class="row"><span>Published release</span><span class="v">844 · origin/main</span></div>
     <div class="row"><span>Latest local</span><span class="v">850 · ece5d217</span></div>
     <div class="row"><span>Current source_id</span><span class="v">b9d7d3b8…bb44e6</span></div>
-    <div class="row"><span>Device FPS (New Game scene)</span><span class="v">46–49 FPS</span></div>
+    <div class="row"><span>Device FPS (New Game scene)</span><span class="v">46–49 FPS @ stock clocks</span></div>
   </div>
 
   <table style="margin-top:22px">
@@ -243,7 +243,7 @@
     <p>Tegra X1 has no tensor cores, no RT cores and no FP8 / cooperative-matrix / <span class="mono">VK_NV_cuda_kernel_launch</span>. Hardware ray tracing and the DLSS fast path are impossible, and DLSS 5 is not an upscaler anyway. FSR2/3 need motion vectors and history buffers, which cost more than they give here; we use FSR1 RCAS plus render-resolution tiers.</p></details>
 
   <details><summary>Why isn't it 60 FPS?</summary>
-    <p>Around 46–49 FPS on device, limited by single-threaded render recording (~20 ms/frame). Numbers come from device logs, are not normalized for clocks, and are not a performance promise.</p></details>
+    <p>Around 46–49 FPS at stock clocks on device, limited by single-threaded render recording (~20 ms/frame). Numbers come from device logs, are not normalized across clocks, and are not a performance promise.</p></details>
 
   <details><summary>Is this an emulator or Wine?</summary>
     <p>No. It is a native ARM64 program: a custom Vulkan renderer, custom resource parsers and custom game logic reading the original data. Unlike Wine / Box64 / FEX compatibility layers.</p></details>

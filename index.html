@@ -198,7 +198,7 @@
     <div class="row"><span>已发布版本</span><span class="v">844 · origin/main</span></div>
     <div class="row"><span>本地最新</span><span class="v">850 · ece5d217</span></div>
     <div class="row"><span>当前 source_id</span><span class="v">b9d7d3b8…bb44e6</span></div>
-    <div class="row"><span>实机帧率（New Game 场景）</span><span class="v">46–49 FPS</span></div>
+    <div class="row"><span>实机帧率（New Game 场景）</span><span class="v">默频 46–49 FPS</span></div>
   </div>
 
   <table style="margin-top:22px">
@@ -241,7 +241,7 @@
     <p>Switch 的 Tegra X1 没有 tensor core、没有 RT core，也没有 FP8 / cooperative matrix / <span class="mono">VK_NV_cuda_kernel_launch</span>，硬件光追与 DLSS 快路径都不成立；DLSS 5 本身也不是超分。FSR2/3 需要运动向量与历史缓冲，成本高于收益，目前使用 FSR1 RCAS + 渲染分辨率档位。</p></details>
 
   <details><summary>为什么帧率不是 60？</summary>
-    <p>当前实机约 46–49 FPS，瓶颈在渲染线程单核串行录制（约 20 ms/帧）。帧率数字来自实机日志，未归一频率，不作为后续性能承诺。</p></details>
+    <p>当前实机默频约 46–49 FPS，瓶颈在渲染线程单核串行录制（约 20 ms/帧）。帧率数字来自实机日志，未做跨频率归一，不作为后续性能承诺。</p></details>
 
   <details><summary>这是模拟器或 Wine 吗？</summary>
     <p>不是。它是 ARM64 原生程序：自写 Vulkan 渲染器、自写资源解析、自写游戏逻辑，直接读原版数据。与 Wine/Box64/FEX 的兼容层方案完全不同。</p></details>
