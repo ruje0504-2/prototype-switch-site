@@ -246,8 +246,8 @@
   <details><summary>这是模拟器或 Wine 吗？</summary>
     <p>不是。它是 ARM64 原生程序：自写 Vulkan 渲染器、自写资源解析、自写游戏逻辑，直接读原版数据。与 Wine/Box64/FEX 的兼容层方案完全不同。</p></details>
 
-  <details><summary>会公开源码或出 PC 版吗？</summary>
-    <p>本项目不公开源码，也不计划发布 PC 版；分发形式为 Switch 用的 NRO 构建。当前图形后端为 Vulkan NVK，后续版本可能评估平台原生图形 API，时间表不作承诺。</p></details>
+  <details><summary>会公开源码吗？会出 PC 版吗？</summary>
+    <p>源码<b>有可能</b>在后续发布，但取决于图形后端：如果切换到 <b>NVN</b>（任天堂专有图形 API，受 NDA 约束），源码就<b>无法公开</b>；当前后端是 Vulkan NVK。PC 版不在计划内。分发形式为 Switch 用的 NRO 构建。</p></details>
 
   <details><summary>合法吗？</summary>
     <p>项目只包含自行编写的代码与工具，不包含原版游戏资源，也不绕过任何正版校验。你需要合法拥有游戏。项目与 Activision / Radical Entertainment 无关。</p></details>
@@ -289,7 +289,7 @@
       <div>
         <div><b style="color:var(--bone)">PROTOTYPE / SWITCH</b> · Native Horizon reimplementation</div>
         <div class="fine">更新于 2026-10-25 · 轮次 850 · 交付 844</div>
-        <div class="fine">不公开源码 · 仅发布 NRO 构建</div>
+        <div class="fine">源码可能发布 · 若转 NVN 则无法公开 · 目前仅发布 NRO</div>
       </div>
       <div>
         <div class="fine">渲染：mesa-switch NVK · 平台：libnx · 视频：FFmpeg</div>
