@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PROTOTYPE · Native Switch Reimplementation</title>
+<meta name="description" content="Native Nintendo Switch reimplementation of PROTOTYPE (虐杀原形): ARM64 + Vulkan NVK, engine reverse-engineered and rewritten. Not an emulator, not a compatibility layer.">
+<link rel="alternate" hreflang="zh-CN" href="../">
+<style>
+  :root{
+    --ink:#060507; --ink2:#0b090d; --ink3:#140f16; --line:rgba(231,224,210,.12);
+    --bone:#ece5d8; --ash:#93887a; --blood:#c8102e; --blood2:#7c0a1d; --vein:#e0253c;
+    --gold:#c9a53f; --steel:#928a7d; --ok:#cbbfa8; --warn:#e0a33a;
+    --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--ink);color:var(--bone);font:16px/1.7 var(--sans);
+    -webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+  .mono{font-family:var(--mono)}
+  .dim{color:var(--ash)}
+  .blood{color:var(--blood)}
+
+  /* ---------- hero ---------- */
+  header.hero{position:relative;overflow:hidden;border-bottom:1px solid rgba(200,16,46,.35);
+    background:
+      radial-gradient(1100px 520px at 12% -12%, rgba(200,16,46,.38), transparent 62%),
+      radial-gradient(620px 420px at 86% 4%, rgba(224,37,60,.16), transparent 64%),
+      radial-gradient(900px 620px at 52% 128%, rgba(124,10,29,.28), transparent 70%),
+      linear-gradient(180deg,#0b0709 0%,var(--ink) 100%);}
+  header.hero::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.35;
+    background-image:linear-gradient(rgba(236,229,216,.04) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(236,229,216,.04) 1px,transparent 1px);
+    background-size:44px 44px;mask-image:linear-gradient(180deg,#000 0%,transparent 78%)}
+  header.hero::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
+    background:repeating-linear-gradient(0deg,rgba(0,0,0,.22) 0 1px,transparent 1px 4px)}
+  .wordmark{position:absolute;right:-1%;top:2%;z-index:0;pointer-events:none;white-space:nowrap;
+    font:900 clamp(72px,12.5vw,184px)/1 var(--sans);letter-spacing:-.045em;transform:rotate(-7deg);
+    color:transparent;-webkit-text-stroke:1.5px rgba(200,16,46,.20);
+    text-shadow:0 0 60px rgba(200,16,46,.14)}
+  .hero .in{position:relative;z-index:1;padding:26px 0 54px}
+  .topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;
+    padding-bottom:44px;font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--ash)}
+  .brand{display:flex;align-items:center;gap:10px;color:var(--bone);letter-spacing:.22em}
+  .brand i{width:9px;height:9px;background:var(--blood);border-radius:50%;
+    box-shadow:0 0 16px var(--blood);display:inline-block}
+  .navlinks{display:flex;gap:18px}
+  .navlinks a{text-decoration:none;color:var(--ash);border-bottom:1px solid transparent;padding-bottom:2px}
+  .navlinks a:hover{color:var(--bone);border-color:var(--blood)}
+  .eyebrow{font:600 12px/1 var(--mono);letter-spacing:.32em;color:var(--blood);text-transform:uppercase}
+  h1.title{margin:18px 0 6px;font-size:clamp(44px,7.4vw,84px);line-height:.98;letter-spacing:-.02em;font-weight:800}
+  h1.title small{display:block;font:500 13px/1.4 var(--mono);letter-spacing:.34em;color:var(--ash);margin-top:14px}
+  .lede{max-width:660px;margin:20px 0 0;font-size:17px;color:#d7d1c6}
+  .lede b{color:var(--bone)}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 0}
+  .chip{font:500 12px/1 var(--mono);letter-spacing:.08em;color:var(--ash);
+    border:1px solid var(--line);border-radius:999px;padding:8px 12px;background:rgba(236,231,221,.03)}
+  .chip b{color:var(--bone)}
+  .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+  .btn{display:inline-flex;align-items:center;gap:9px;text-decoration:none;font-weight:650;font-size:14.5px;
+    padding:13px 20px;border-radius:10px;border:1px solid var(--line);color:var(--bone);
+    background:rgba(236,231,221,.04);transition:.18s}
+  .btn:hover{border-color:rgba(236,231,221,.3);background:rgba(236,231,221,.07);transform:translateY(-1px)}
+  .btn.primary{background:linear-gradient(180deg,#d2143a,var(--blood2));border-color:#e0253c;color:#fff;
+    box-shadow:0 10px 30px rgba(200,16,46,.35)}
+  .btn.primary:hover{background:linear-gradient(180deg,#e0253c,var(--blood))}
+  .btn small{font:500 11px/1 var(--mono);opacity:.75}
+
+  /* ---------- sections ---------- */
+  section.pad{padding:64px 0 8px}
+  .h2{display:flex;align-items:baseline;gap:12px;margin:0 0 8px;font-size:24px;letter-spacing:-.01em}
+  .h2 .n{font:600 12px/1 var(--mono);color:var(--blood);letter-spacing:.2em}
+  .sub{margin:0 0 26px;color:var(--ash);max-width:720px}
+  .grid{display:grid;gap:14px}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  .g2{grid-template-columns:repeat(2,1fr)}
+  @media(max-width:860px){.g3,.g2{grid-template-columns:1fr}}
+  .card{border:1px solid var(--line);border-radius:14px;padding:18px 18px 16px;
+    background:linear-gradient(180deg,rgba(236,231,221,.045),rgba(236,231,221,.015));transition:.18s}
+  .card:hover{border-color:rgba(236,231,221,.24);transform:translateY(-2px)}
+  .card h3{margin:0 0 6px;font-size:16px;display:flex;align-items:center;gap:8px}
+  .card h3 i{width:7px;height:7px;border-radius:2px;background:var(--blood);display:inline-block;flex:none;
+    box-shadow:0 0 10px rgba(200,16,46,.5)}
+  .card p{margin:0;font-size:14px;color:var(--ash)}
+  .card .k{font:600 11px/1 var(--mono);color:var(--steel);letter-spacing:.14em;margin-bottom:10px;display:block}
+
+  .panel{border:1px solid var(--line);border-radius:16px;padding:22px;background:rgba(236,231,221,.025)}
+  .bar{height:9px;border-radius:999px;background:#211d27;overflow:hidden;margin:12px 0 8px}
+  .bar > i{display:block;height:100%;width:65%;border-radius:999px;
+    background:linear-gradient(90deg,var(--blood2),var(--blood) 55%,var(--vein))}
+  .row{display:flex;justify-content:space-between;gap:14px;padding:10px 0;border-bottom:1px dashed rgba(236,231,221,.1);font-size:14px}
+  .row:last-child{border-bottom:0}
+  .row .v{color:var(--bone);font-family:var(--mono);font-size:13px}
+  .tag{font:600 10.5px/1 var(--mono);letter-spacing:.12em;padding:5px 8px;border-radius:999px;white-space:nowrap}
+  .t-done{background:rgba(236,229,216,.08);color:var(--ok);border:1px solid rgba(236,229,216,.22)}
+  .t-act{background:rgba(200,16,46,.16);color:#ff6b78;border:1px solid rgba(200,16,46,.42)}
+  .t-todo{background:rgba(147,136,122,.1);color:var(--ash);border:1px solid var(--line)}
+
+  table{width:100%;border-collapse:collapse;font-size:14px}
+  th,td{text-align:left;padding:11px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{font:600 11px/1 var(--mono);letter-spacing:.16em;color:var(--ash);text-transform:uppercase}
+  td.num{font-family:var(--mono);color:var(--bone)}
+
+  details{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:rgba(236,231,221,.02);margin-bottom:10px}
+  details[open]{border-color:rgba(200,16,46,.45)}
+  summary{cursor:pointer;font-weight:650;list-style:none;display:flex;justify-content:space-between;gap:12px}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"+";color:var(--blood);font-family:var(--mono)}
+  details[open] summary::after{content:"−"}
+  details p{margin:10px 0 0;color:var(--ash);font-size:14px}
+
+  .tl{border-left:1px solid var(--line);margin-left:6px;padding-left:20px}
+  .tl .ev{position:relative;margin:0 0 20px}
+  .tl .ev::before{content:"";position:absolute;left:-25px;top:7px;width:9px;height:9px;border-radius:50%;
+    background:var(--blood);box-shadow:0 0 0 4px rgba(200,16,46,.16),0 0 18px rgba(200,16,46,.55)}
+  .tl .ev h4{margin:0 0 2px;font-size:15px}
+  .tl .ev .d{font:500 11.5px/1 var(--mono);color:var(--ash);letter-spacing:.08em}
+
+  .stack{display:flex;flex-wrap:wrap;gap:8px}
+  .stack span{font:500 12px/1 var(--mono);border:1px solid var(--line);border-radius:8px;padding:9px 11px;color:var(--steel)}
+
+  footer{margin-top:70px;border-top:1px solid var(--line);padding:30px 0 46px;color:var(--ash);font-size:13px}
+  footer .law{border:1px solid rgba(200,16,46,.38);background:linear-gradient(180deg,rgba(200,16,46,.10),rgba(200,16,46,.04));border-radius:12px;padding:16px 18px;margin-bottom:22px;color:#d9d3c8}
+  footer .flex{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between}
+  .kbd{font:600 11px/1 var(--mono);border:1px solid var(--line);border-bottom-width:2px;border-radius:6px;padding:5px 7px;color:var(--bone)}
+  .fine{font-size:11.5px;color:#7d766c}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wordmark" aria-hidden="true">PROTOTYPE</div>
+  <div class="wrap in">
+    <div class="topbar">
+      <div class="brand"><i></i> PROTOTYPE / SWITCH</div>
+      <nav class="navlinks">
+        <a href="#features">Features</a>
+        <a href="#status">Status</a>
+        <a href="#install">Install</a>
+        <a href="#faq">FAQ</a>
+        <a href="#log">Updates</a>
+        <a href="../">中文</a>
+      </nav>
+    </div>
+
+    <div class="eyebrow">Native Horizon Port · Vulkan NVK</div>
+    <h1 class="title">PROTOTYPE<small>虐杀原形 — NATIVE SWITCH REIMPLEMENTATION</small></h1>
+    <p class="lede">
+      Not an emulator. Not a compatibility layer. The 2009 <b>Radical D3D9 engine</b> is reverse-engineered
+      function by function and rebuilt in <b>C11 + Vulkan NVK</b> as a native ARM64 NRO that reads the
+      original game data directly.
+    </p>
+
+    <div class="chips">
+      <span class="chip">Round <b>850</b></span>
+      <span class="chip">Commits <b>900</b></span>
+      <span class="chip">Code size <b>420k+ lines</b></span>
+      <span class="chip">NRO <b>31,273,016 B</b></span>
+      <span class="chip">Backend <b>mesa-switch NVK</b></span>
+    </div>
+
+    <div class="cta">
+      <a class="btn primary" href="#install">Download &amp; Install <small>NRO</small></a>
+      <a class="btn" href="#log">Changelog <small>R850</small></a>
+      <a class="btn" href="#status">Progress <small>~65%</small></a>
+    </div>
+    <p class="fine" style="margin-top:14px">NRO + SD and direct-install NSP are not released yet — stay tuned</p>
+  </div>
+</header>
+
+<section class="wrap pad" id="features">
+  <h2 class="h2"><span class="n">01</span> Native implementations in place</h2>
+  <p class="sub">Every item below is a real code path running on Switch; original data stays read-only. Status reflects the current build.</p>
+  <div class="grid g3">
+    <div class="card"><span class="k">RENDERER</span><h3><i></i>Vulkan NVK renderer</h3>
+      <p>Multi-pass midground / opaque / translucent / lighting, real material and shader pairs, 575 draws, 42 textures, 63 materials; 30/60/VSync and Off/FSR present modes.</p></div>
+    <div class="card"><span class="k">WORLD</span><h3><i></i>World &amp; streaming</h3>
+      <p>Startup packages, city zones, StreamDriver, mission slots and package lifetime; real package declarations and trigger volumes.</p></div>
+    <div class="card"><span class="k">PHYSICS</span><h3><i></i>Collision &amp; ragdoll</h3>
+      <p>Ragdoll drive/contact/raycasts, sector filtering, multi-sphere queries, support &amp; IK, Air camera, drift.</p></div>
+    <div class="card"><span class="k">AUDIO</span><h3><i></i>Audio engine</h3>
+      <p>Banks / voices / listeners / output, Track/UDO/Mixer, voice-line identity and dialogue tickets, PCM integration.</p></div>
+    <div class="card"><span class="k">FRONTEND</span><h3><i></i>Full frontend</h3>
+      <p>Logo, main menu, save/load, popup, difficulty, legal clock, Extras cheat-code entry; 158 hardware-decoded movies and a Chinese patch.</p></div>
+    <div class="card"><span class="k">EFFECTS</span><h3><i></i>Particles &amp; GPU skinning</h3>
+      <p>GPU numerics/lifetime, PSTA/RAT/SPEM, four emit shapes, quad/indirect draw, Billboard archetypes; GPU skinning by default with CPU fallback.</p></div>
+  </div>
+</section>
+
+<section class="wrap pad" id="status">
+  <h2 class="h2"><span class="n">02</span> Progress &amp; roadmap</h2>
+  <p class="sub">Measured against the playable-prologue bar: the player must be controllable and missions must trigger. Subsystem completeness is not playability.</p>
+
+  <div class="panel">
+    <div class="row"><span>Playable prologue (acceptance bar)</span><span class="v">~65%</span></div>
+    <div class="bar"><i></i></div>
+    <div class="row"><span>Published release</span><span class="v">844 · origin/main</span></div>
+    <div class="row"><span>Latest local</span><span class="v">850 · ece5d217</span></div>
+    <div class="row"><span>Current source_id</span><span class="v">b9d7d3b8…bb44e6</span></div>
+    <div class="row"><span>Device FPS (New Game scene)</span><span class="v">46–49 FPS</span></div>
+  </div>
+
+  <table style="margin-top:22px">
+    <thead><tr><th>Area</th><th>Status</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td>Renderer / resources / world</td><td><span class="tag t-done">In place</span></td><td>Multi-pass, materials, streaming, city zones</td></tr>
+      <tr><td>Physics / collision / ragdoll</td><td><span class="tag t-done">In place</span></td><td>Hit neighbor queries, support/IK, Air camera</td></tr>
+      <tr><td>Audio / dialogue</td><td><span class="tag t-act">In progress</span></td><td>File-based tickets wired; default scheduling pending</td></tr>
+      <tr><td>Frontend / HUD / movies</td><td><span class="tag t-done">In place</span></td><td>158 hardware-decoded movies, Chinese patch, Extras entry</td></tr>
+      <tr><td>GPU particles</td><td><span class="tag t-act">Wrapping up</span></td><td>Four shapes and Billboard in; default world activation pending</td></tr>
+      <tr><td>Real player loop</td><td><span class="tag t-act">In progress</span></td><td>38 components assembled; landing / wall-climb still open</td></tr>
+      <tr><td>Missions / combat</td><td><span class="tag t-todo">Not started</span></td><td>Pieces exist (health/hit/ragdoll/grab/lockon); loop not wired</td></tr>
+      <tr><td>Save / Extras effects</td><td><span class="tag t-todo">Pending</span></td><td>DB read/write and slots done; full load pending</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="wrap pad" id="install">
+  <h2 class="h2"><span class="n">03</span> Install</h2>
+  <p class="sub">You need a Switch capable of running homebrew, plus your own copy of the PC game data.</p>
+  <div class="grid g3">
+    <div class="card"><span class="k">STEP 1</span><h3><i></i>Prepare the console</h3>
+      <p>Atmosphère environment and a microSD card. This project ships no game content or assets.</p></div>
+    <div class="card"><span class="k">STEP 2</span><h3><i></i>Place the data</h3>
+      <p>Unpack your own PC copy into <span class="mono">game/</span> on the SD card; movies go to <span class="mono">game/Movies</span>.</p></div>
+    <div class="card"><span class="k">STEP 3</span><h3><i></i>Run</h3>
+      <p>Copy <span class="mono">prototype-runtime.nro</span> into <span class="mono">switch/</span> and launch from the Homebrew Menu. Gamepad only.</p></div>
+  </div>
+  <p class="fine" style="margin-top:14px">Current builds default to GPU skinning; build with <span class="mono">PROTO_GPU_SKINNING=OFF</span> to switch back to CPU skinning.</p>
+  <p class="fine" style="margin-top:6px">Planned distribution: <b style="color:var(--bone)">NRO + SD folder</b> and <b style="color:var(--bone)">direct-install NSP</b> — <b style="color:var(--blood)">not released yet, stay tuned</b>.</p>
+</section>
+
+<section class="wrap pad" id="faq">
+  <h2 class="h2"><span class="n">04</span> FAQ</h2>
+
+  <details open><summary>What game data do I need? Are assets included?</summary>
+    <p>No assets are included. Only the homebrew code (NRO) is distributed; you must own the PC version. Release packages contain no original game files.</p></details>
+
+  <details><summary>Why no DLSS / ray tracing / FSR2?</summary>
+    <p>Tegra X1 has no tensor cores, no RT cores and no FP8 / cooperative-matrix / <span class="mono">VK_NV_cuda_kernel_launch</span>. Hardware ray tracing and the DLSS fast path are impossible, and DLSS 5 is not an upscaler anyway. FSR2/3 need motion vectors and history buffers, which cost more than they give here; we use FSR1 RCAS plus render-resolution tiers.</p></details>
+
+  <details><summary>Why isn't it 60 FPS?</summary>
+    <p>Around 46–49 FPS on device, limited by single-threaded render recording (~20 ms/frame). Numbers come from device logs, are not normalized for clocks, and are not a performance promise.</p></details>
+
+  <details><summary>Is this an emulator or Wine?</summary>
+    <p>No. It is a native ARM64 program: a custom Vulkan renderer, custom resource parsers and custom game logic reading the original data. Unlike Wine / Box64 / FEX compatibility layers.</p></details>
+
+  <details><summary>Will the source be released, or a PC version?</summary>
+    <p>No source release and no PC version planned; distribution is NRO builds for Switch. The graphics backend is Vulkan NVK today; a platform-native graphics API may be evaluated later, with no timeline promised.</p></details>
+
+  <details><summary>Is this legal?</summary>
+    <p>The project contains only original code and tools, no game assets, and bypasses no DRM or copy protection. You must legally own the game. Not affiliated with Activision or Radical Entertainment.</p></details>
+</section>
+
+<section class="wrap pad" id="log">
+  <h2 class="h2"><span class="n">05</span> Recent updates</h2>
+  <div class="tl">
+    <div class="ev"><div class="d">2026-10-25 · R850</div><h4>Hit parameters &amp; HUD scene events</h4>
+      <p class="dim">56 Hit parameter groups bit-identical; SLT01/GFT01 integrated; 180-frame jump fixture with no callback failure, landing / wall-climb still open.</p></div>
+    <div class="ev"><div class="d">2026-10-24 · R849</div><h4>Shared Hit neighbor queries / voice-line identity</h4>
+      <p class="dim">8 original neighbor sets, 9 queries matching contacts; 24 voice items incl. 2 capacity edges.</p></div>
+    <div class="ev"><div class="d">2026-10-24 · R848</div><h4>File-based dialogue tickets</h4>
+      <p class="dim">Real load → READY silent → explicit commit → cancel / retire / release.</p></div>
+    <div class="ev"><div class="d">2026-10-24 · R838</div><h4>GPU skinning default + FastZ fix</h4>
+      <p class="dim">Skin worker 1.99 → 0.33 ms; render callback rose; FPS in the 46–49 range, A/B still running.</p></div>
+    <div class="ev"><div class="d">2026-10-23 · R797</div><h4>Native Off present for 30/60/VSync</h4>
+      <p class="dim">FIFO and IMMEDIATE unified on private targets; 224 readback cases pass.</p></div>
+  </div>
+</section>
+
+<section class="wrap pad">
+  <h2 class="h2"><span class="n">06</span> Tech stack</h2>
+  <div class="stack">
+    <span>C11</span><span>Vulkan 1.2</span><span>mesa-switch NVK</span><span>libnx</span>
+    <span>FFmpeg (avcodec/swscale)</span><span>Lua 5.1</span><span>ARM64 / NEON</span>
+    <span>CMake + devkitA64</span><span>ASan / UBSan</span>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="law">
+      <b>Disclaimer</b> — This is an unofficial fan project containing only original code and tools.
+      It ships no PROTOTYPE game assets, trademarks or copyrighted content. Running it requires a
+      legally owned copy of the game. Not affiliated with Activision Publishing or Radical Entertainment.
+    </div>
+    <div class="flex">
+      <div>
+        <div><b style="color:var(--bone)">PROTOTYPE / SWITCH</b> · Native Horizon reimplementation</div>
+        <div class="fine">Updated 2026-10-25 · Round 850 · Delivery 844</div>
+        <div class="fine">No source release · NRO builds only</div>
+      </div>
+      <div>
+        <div class="fine">Rendering: mesa-switch NVK · Platform: libnx · Video: FFmpeg</div>
+        <div class="fine">Distribution: NRO builds (no game assets)</div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
