@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>虐杀原形 · Switch 原生重实现</title>
+<meta name="description" content="PROTOTYPE（虐杀原形）的 Nintendo Switch 原生重实现：ARM64 + Vulkan NVK，逆向重写引擎，非模拟器、非兼容层。">
+<style>
+  :root{
+    --ink:#060507; --ink2:#0b090d; --ink3:#140f16; --line:rgba(231,224,210,.12);
+    --bone:#ece5d8; --ash:#93887a; --blood:#c8102e; --blood2:#7c0a1d; --vein:#e0253c;
+    --gold:#c9a53f; --steel:#928a7d; --ok:#cbbfa8; --warn:#e0a33a;
+    --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--ink);color:var(--bone);font:16px/1.7 var(--sans);
+    -webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+  .mono{font-family:var(--mono)}
+  .dim{color:var(--ash)}
+  .blood{color:var(--blood)}
+
+  /* ---------- hero ---------- */
+  header.hero{position:relative;overflow:hidden;border-bottom:1px solid rgba(200,16,46,.35);
+    background:
+      radial-gradient(1100px 520px at 12% -12%, rgba(200,16,46,.38), transparent 62%),
+      radial-gradient(620px 420px at 86% 4%, rgba(224,37,60,.16), transparent 64%),
+      radial-gradient(900px 620px at 52% 128%, rgba(124,10,29,.28), transparent 70%),
+      linear-gradient(180deg,#0b0709 0%,var(--ink) 100%);}
+  header.hero::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.35;
+    background-image:linear-gradient(rgba(236,229,216,.04) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(236,229,216,.04) 1px,transparent 1px);
+    background-size:44px 44px;mask-image:linear-gradient(180deg,#000 0%,transparent 78%)}
+  header.hero::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
+    background:repeating-linear-gradient(0deg,rgba(0,0,0,.22) 0 1px,transparent 1px 4px)}
+  .wordmark{position:absolute;right:-1%;top:2%;z-index:0;pointer-events:none;white-space:nowrap;
+    font:900 clamp(72px,12.5vw,184px)/1 var(--sans);letter-spacing:-.045em;transform:rotate(-7deg);
+    color:transparent;-webkit-text-stroke:1.5px rgba(200,16,46,.20);
+    text-shadow:0 0 60px rgba(200,16,46,.14)}
+  .hero .in{position:relative;z-index:1;padding:26px 0 54px}
+  .topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;
+    padding-bottom:44px;font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--ash)}
+  .brand{display:flex;align-items:center;gap:10px;color:var(--bone);letter-spacing:.22em}
+  .brand i{width:9px;height:9px;background:var(--blood);border-radius:50%;
+    box-shadow:0 0 16px var(--blood);display:inline-block}
+  .navlinks{display:flex;gap:18px}
+  .navlinks a{text-decoration:none;color:var(--ash);border-bottom:1px solid transparent;padding-bottom:2px}
+  .navlinks a:hover{color:var(--bone);border-color:var(--blood)}
+  .eyebrow{font:600 12px/1 var(--mono);letter-spacing:.32em;color:var(--blood);text-transform:uppercase}
+  h1.title{margin:18px 0 6px;font-size:clamp(44px,7.4vw,84px);line-height:.98;letter-spacing:-.02em;font-weight:800}
+  h1.title small{display:block;font:500 13px/1.4 var(--mono);letter-spacing:.34em;color:var(--ash);margin-top:14px}
+  .lede{max-width:660px;margin:20px 0 0;font-size:17px;color:#d7d1c6}
+  .lede b{color:var(--bone)}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 0}
+  .chip{font:500 12px/1 var(--mono);letter-spacing:.08em;color:var(--ash);
+    border:1px solid var(--line);border-radius:999px;padding:8px 12px;background:rgba(236,231,221,.03)}
+  .chip b{color:var(--bone)}
+  .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+  .btn{display:inline-flex;align-items:center;gap:9px;text-decoration:none;font-weight:650;font-size:14.5px;
+    padding:13px 20px;border-radius:10px;border:1px solid var(--line);color:var(--bone);
+    background:rgba(236,231,221,.04);transition:.18s}
+  .btn:hover{border-color:rgba(236,231,221,.3);background:rgba(236,231,221,.07);transform:translateY(-1px)}
+  .btn.primary{background:linear-gradient(180deg,#d2143a,var(--blood2));border-color:#e0253c;color:#fff;
+    box-shadow:0 10px 30px rgba(200,16,46,.35)}
+  .btn.primary:hover{background:linear-gradient(180deg,#e0253c,var(--blood))}
+  .btn small{font:500 11px/1 var(--mono);opacity:.75}
+
+  /* ---------- sections ---------- */
+  section.pad{padding:64px 0 8px}
+  .h2{display:flex;align-items:baseline;gap:12px;margin:0 0 8px;font-size:24px;letter-spacing:-.01em}
+  .h2 .n{font:600 12px/1 var(--mono);color:var(--blood);letter-spacing:.2em}
+  .sub{margin:0 0 26px;color:var(--ash);max-width:720px}
+  .grid{display:grid;gap:14px}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  .g2{grid-template-columns:repeat(2,1fr)}
+  @media(max-width:860px){.g3,.g2{grid-template-columns:1fr}}
+  .card{border:1px solid var(--line);border-radius:14px;padding:18px 18px 16px;
+    background:linear-gradient(180deg,rgba(236,231,221,.045),rgba(236,231,221,.015));transition:.18s}
+  .card:hover{border-color:rgba(236,231,221,.24);transform:translateY(-2px)}
+  .card h3{margin:0 0 6px;font-size:16px;display:flex;align-items:center;gap:8px}
+  .card h3 i{width:7px;height:7px;border-radius:2px;background:var(--blood);display:inline-block;flex:none;
+    box-shadow:0 0 10px rgba(200,16,46,.5)}
+  .card p{margin:0;font-size:14px;color:var(--ash)}
+  .card .k{font:600 11px/1 var(--mono);color:var(--steel);letter-spacing:.14em;margin-bottom:10px;display:block}
+
+  .panel{border:1px solid var(--line);border-radius:16px;padding:22px;background:rgba(236,231,221,.025)}
+  .bar{height:9px;border-radius:999px;background:#211d27;overflow:hidden;margin:12px 0 8px}
+  .bar > i{display:block;height:100%;width:65%;border-radius:999px;
+    background:linear-gradient(90deg,var(--blood2),var(--blood) 55%,var(--vein))}
+  .row{display:flex;justify-content:space-between;gap:14px;padding:10px 0;border-bottom:1px dashed rgba(236,231,221,.1);font-size:14px}
+  .row:last-child{border-bottom:0}
+  .row .v{color:var(--bone);font-family:var(--mono);font-size:13px}
+  .tag{font:600 10.5px/1 var(--mono);letter-spacing:.12em;padding:5px 8px;border-radius:999px;white-space:nowrap}
+  .t-done{background:rgba(236,229,216,.08);color:var(--ok);border:1px solid rgba(236,229,216,.22)}
+  .t-act{background:rgba(200,16,46,.16);color:#ff6b78;border:1px solid rgba(200,16,46,.42)}
+  .t-todo{background:rgba(147,136,122,.1);color:var(--ash);border:1px solid var(--line)}
+
+  table{width:100%;border-collapse:collapse;font-size:14px}
+  th,td{text-align:left;padding:11px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{font:600 11px/1 var(--mono);letter-spacing:.16em;color:var(--ash);text-transform:uppercase}
+  td.num{font-family:var(--mono);color:var(--bone)}
+
+  details{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:rgba(236,231,221,.02);margin-bottom:10px}
+  details[open]{border-color:rgba(200,16,46,.45)}
+  summary{cursor:pointer;font-weight:650;list-style:none;display:flex;justify-content:space-between;gap:12px}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"+";color:var(--blood);font-family:var(--mono)}
+  details[open] summary::after{content:"−"}
+  details p{margin:10px 0 0;color:var(--ash);font-size:14px}
+
+  .tl{border-left:1px solid var(--line);margin-left:6px;padding-left:20px}
+  .tl .ev{position:relative;margin:0 0 20px}
+  .tl .ev::before{content:"";position:absolute;left:-25px;top:7px;width:9px;height:9px;border-radius:50%;
+    background:var(--blood);box-shadow:0 0 0 4px rgba(200,16,46,.16),0 0 18px rgba(200,16,46,.55)}
+  .tl .ev h4{margin:0 0 2px;font-size:15px}
+  .tl .ev .d{font:500 11.5px/1 var(--mono);color:var(--ash);letter-spacing:.08em}
+
+  .stack{display:flex;flex-wrap:wrap;gap:8px}
+  .stack span{font:500 12px/1 var(--mono);border:1px solid var(--line);border-radius:8px;padding:9px 11px;color:var(--steel)}
+
+  footer{margin-top:70px;border-top:1px solid var(--line);padding:30px 0 46px;color:var(--ash);font-size:13px}
+  footer .law{border:1px solid rgba(200,16,46,.38);background:linear-gradient(180deg,rgba(200,16,46,.10),rgba(200,16,46,.04));border-radius:12px;padding:16px 18px;margin-bottom:22px;color:#d9d3c8}
+  footer .flex{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between}
+  .kbd{font:600 11px/1 var(--mono);border:1px solid var(--line);border-bottom-width:2px;border-radius:6px;padding:5px 7px;color:var(--bone)}
+  .fine{font-size:11.5px;color:#7d766c}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wordmark" aria-hidden="true">PROTOTYPE</div>
+  <div class="wrap in">
+    <div class="topbar">
+      <div class="brand"><i></i> PROTOTYPE / SWITCH</div>
+      <nav class="navlinks">
+        <a href="#features">特性</a>
+        <a href="#status">进度</a>
+        <a href="#install">安装</a>
+        <a href="#faq">FAQ</a>
+        <a href="#log">更新</a>
+      </nav>
+    </div>
+
+    <div class="eyebrow">Native Horizon Port · Vulkan NVK</div>
+    <h1 class="title">虐杀原形<small>PROTOTYPE — NATIVE SWITCH REIMPLEMENTATION</small></h1>
+    <p class="lede">
+      不是模拟器，不是兼容层。把 2009 年的 <b>Radical D3D9 引擎</b>逐函数逆向，
+      用 <b>C11 + Vulkan NVK</b> 重新实现成 ARM64 原生 NRO，直接读取原版游戏数据。
+    </p>
+
+    <div class="chips">
+      <span class="chip">轮次 <b>850</b></span>
+      <span class="chip">提交 <b>900</b></span>
+      <span class="chip">代码规模 <b>42 万行+</b></span>
+      <span class="chip">NRO <b>31,273,016 B</b></span>
+      <span class="chip">后端 <b>mesa-switch NVK</b></span>
+    </div>
+
+    <div class="cta">
+      <a class="btn primary" href="#install">下载与安装 <small>NRO</small></a>
+      <a class="btn" href="#log">更新日志 <small>R850</small></a>
+      <a class="btn" href="#status">当前进度 <small>~65%</small></a>
+    </div>
+    <p class="fine" style="margin-top:14px">NRO + SD 与直装 NSP 均未推出 · 敬请期待</p>
+  </div>
+</header>
+
+<section class="wrap pad" id="features">
+  <h2 class="h2"><span class="n">01</span> 已接通的原生实现</h2>
+  <p class="sub">全部为运行在 Switch 上的真实代码路径；原版数据只读。状态以当前构建为准。</p>
+  <div class="grid g3">
+    <div class="card"><span class="k">RENDERER</span><h3><i></i>Vulkan NVK 渲染器</h3>
+      <p>中景/不透明/半透明/光照多 pass，真实材质与 Shader 对，575 draws、42 纹理、63 材质，30/60/VSync 与 Off/FSR 呈现。</p></div>
+    <div class="card"><span class="k">WORLD</span><h3><i></i>世界与流送</h3>
+      <p>Startup 包、城区资源、StreamDriver、任务槽与包生命周期；真实包声明与触发区。</p></div>
+    <div class="card"><span class="k">PHYSICS</span><h3><i></i>碰撞与布娃娃</h3>
+      <p>布娃娃驱动/接触/射线、扇形筛选、球体多命中查询、支撑与 IK、Air 相机、drift。</p></div>
+    <div class="card"><span class="k">AUDIO</span><h3><i></i>音频引擎</h3>
+      <p>bank/发声/监听/输出、Track/UDO/Mixer、语音行身份与对白 ticket、PCM 集成。</p></div>
+    <div class="card"><span class="k">FRONTEND</span><h3><i></i>完整前端</h3>
+      <p>Logo、主菜单、存储/加载、popup、难度、legal 时钟、Extras 兑换码入口；158 段硬解影片与中文字体。</p></div>
+    <div class="card"><span class="k">EFFECTS</span><h3><i></i>粒子与 GPU 蒙皮</h3>
+      <p>GPU 数值/寿命、PSTA/RAT/SPEM、四形状发射、quad/间接绘制、Billboard 原型；默认 GPU 蒙皮与 CPU 回退。</p></div>
+  </div>
+</section>
+
+<section class="wrap pad" id="status">
+  <h2 class="h2"><span class="n">02</span> 进度与路线</h2>
+  <p class="sub">按"可玩序章"验收口径统计：玩家能操控、任务能触发才算过关，底层子系统完成度不等于可玩度。</p>
+
+  <div class="panel">
+    <div class="row"><span>可玩序章（验收口径）</span><span class="v">~65%</span></div>
+    <div class="bar"><i></i></div>
+    <div class="row"><span>已发布版本</span><span class="v">844 · origin/main</span></div>
+    <div class="row"><span>本地最新</span><span class="v">850 · ece5d217</span></div>
+    <div class="row"><span>当前 source_id</span><span class="v">b9d7d3b8…bb44e6</span></div>
+    <div class="row"><span>实机帧率（New Game 场景）</span><span class="v">46–49 FPS</span></div>
+  </div>
+
+  <table style="margin-top:22px">
+    <thead><tr><th>区块</th><th>状态</th><th>说明</th></tr></thead>
+    <tbody>
+      <tr><td>渲染 / 资源 / 世界</td><td><span class="tag t-done">已接通</span></td><td>多 pass、材质、流送、城区资源</td></tr>
+      <tr><td>物理 / 碰撞 / 布娃娃</td><td><span class="tag t-done">已接通</span></td><td>Hit 近邻查询、支撑/IK、Air 相机</td></tr>
+      <tr><td>音频 / 对白</td><td><span class="tag t-act">进行中</span></td><td>文件型 ticket 已接，默认调度待接</td></tr>
+      <tr><td>前端 / HUD / 影片</td><td><span class="tag t-done">已接通</span></td><td>158 段硬解、中文补丁、Extras 入口</td></tr>
+      <tr><td>GPU 粒子</td><td><span class="tag t-act">收尾</span></td><td>四形状与 Billboard 已入，默认世界激活待接</td></tr>
+      <tr><td>真实玩家闭环</td><td><span class="tag t-act">进行中</span></td><td>38 组件已装配，落地/爬墙未闭合</td></tr>
+      <tr><td>任务 / 战斗</td><td><span class="tag t-todo">待开始</span></td><td>零件齐备（health/hit/ragdoll/grab/lockon），闭环未接</td></tr>
+      <tr><td>存档 / Extras 效果</td><td><span class="tag t-todo">待接</span></td><td>DB 读写与槽位已通，完整载入待接</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="wrap pad" id="install">
+  <h2 class="h2"><span class="n">03</span> 安装</h2>
+  <p class="sub">需要一台可运行自制程序的 Switch，以及你自备的正版 PC 版游戏数据。</p>
+  <div class="grid g3">
+    <div class="card"><span class="k">STEP 1</span><h3><i></i>准备主机</h3>
+      <p>Atmosphère 环境，microSD 卡；本项目不包含任何游戏本体或资源文件。</p></div>
+    <div class="card"><span class="k">STEP 2</span><h3><i></i>放置数据</h3>
+      <p>把正版 PC 版资源按说明解包到 SD 的 <span class="mono">game/</span> 目录，影片放入 <span class="mono">game/Movies</span>。</p></div>
+    <div class="card"><span class="k">STEP 3</span><h3><i></i>运行</h3>
+      <p>将 <span class="mono">prototype-runtime.nro</span> 放入 <span class="mono">switch/</span>，从 HBL 启动；仅适配手柄。</p></div>
+  </div>
+  <p class="fine" style="margin-top:14px">当前构建默认 GPU 蒙皮，可在构建时用 <span class="mono">PROTO_GPU_SKINNING=OFF</span> 切回 CPU 蒙皮。</p>
+  <p class="fine" style="margin-top:6px">后续将提供 <b style="color:var(--bone)">NRO + SD 目录</b> 与 <b style="color:var(--bone)">直装 NSP</b> 两种分发形式——<b style="color:var(--blood)">还未推出，敬请期待</b>。</p>
+</section>
+
+<section class="wrap pad" id="faq">
+  <h2 class="h2"><span class="n">04</span> 常见问题</h2>
+
+  <details open><summary>需要什么游戏数据？会附带资源吗？</summary>
+    <p>不会附带。本项目只分发自制代码（NRO），运行需要你自己拥有的正版 PC 版《虐杀原形》资源。发布包中不包含任何原版游戏文件。</p></details>
+
+  <details><summary>为什么不做 DLSS / 光追 / FSR2？</summary>
+    <p>Switch 的 Tegra X1 没有 tensor core、没有 RT core，也没有 FP8 / cooperative matrix / <span class="mono">VK_NV_cuda_kernel_launch</span>，硬件光追与 DLSS 快路径都不成立；DLSS 5 本身也不是超分。FSR2/3 需要运动向量与历史缓冲，成本高于收益，目前使用 FSR1 RCAS + 渲染分辨率档位。</p></details>
+
+  <details><summary>为什么帧率不是 60？</summary>
+    <p>当前实机约 46–49 FPS，瓶颈在渲染线程单核串行录制（约 20 ms/帧）。帧率数字来自实机日志，未归一频率，不作为后续性能承诺。</p></details>
+
+  <details><summary>这是模拟器或 Wine 吗？</summary>
+    <p>不是。它是 ARM64 原生程序：自写 Vulkan 渲染器、自写资源解析、自写游戏逻辑，直接读原版数据。与 Wine/Box64/FEX 的兼容层方案完全不同。</p></details>
+
+  <details><summary>会公开源码或出 PC 版吗？</summary>
+    <p>本项目不公开源码，也不计划发布 PC 版；分发形式为 Switch 用的 NRO 构建。当前图形后端为 Vulkan NVK，后续版本可能评估平台原生图形 API，时间表不作承诺。</p></details>
+
+  <details><summary>合法吗？</summary>
+    <p>项目只包含自行编写的代码与工具，不包含原版游戏资源，也不绕过任何正版校验。你需要合法拥有游戏。项目与 Activision / Radical Entertainment 无关。</p></details>
+</section>
+
+<section class="wrap pad" id="log">
+  <h2 class="h2"><span class="n">05</span> 最近更新</h2>
+  <div class="tl">
+    <div class="ev"><div class="d">2026-10-25 · R850</div><h4>Hit 参数与 HUD 场景事件</h4>
+      <p class="dim">56 组 Hit 参数逐位一致；SLT01/GFT01 接回；跳跃 fixture 180 帧无回调失败，落地/爬墙仍未闭合。</p></div>
+    <div class="ev"><div class="d">2026-10-24 · R849</div><h4>共享 Hit 近邻查询 / 语音行身份</h4>
+      <p class="dim">8 组原版近邻、9 次查询与 contact 一致；语音 24 项含 2 项容量边界。</p></div>
+    <div class="ev"><div class="d">2026-10-24 · R848</div><h4>文件型对白 ticket</h4>
+      <p class="dim">真实加载 → READY 静默 → 明确 commit → 取消/退休/释放。</p></div>
+    <div class="ev"><div class="d">2026-10-24 · R838</div><h4>GPU 蒙皮默认开启 + FastZ 修复</h4>
+      <p class="dim">蒙皮 worker 1.99 → 0.33 ms；渲染回调反增，FPS 46–49 区间，A/B 仍在进行。</p></div>
+    <div class="ev"><div class="d">2026-10-23 · R797</div><h4>30/60/VSync 原生 Off 呈现</h4>
+      <p class="dim">FIFO 与 IMMEDIATE 统一私有目标；224 组读回通过。</p></div>
+  </div>
+</section>
+
+<section class="wrap pad">
+  <h2 class="h2"><span class="n">06</span> 技术栈</h2>
+  <div class="stack">
+    <span>C11</span><span>Vulkan 1.2</span><span>mesa-switch NVK</span><span>libnx</span>
+    <span>FFmpeg (avcodec/swscale)</span><span>Lua 5.1</span><span>ARM64 / NEON</span>
+    <span>CMake + devkitA64</span><span>ASan / UBSan</span>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="law">
+      <b>免责声明</b> — 本项目是非官方粉丝作品，仅包含自行编写的代码与工具，
+      不包含《虐杀原形》(PROTOTYPE) 的任何游戏资源、商标或版权内容。
+      运行需要用户自行合法拥有的游戏副本。与 Activision Publishing、Radical Entertainment 无任何关联。
+    </div>
+    <div class="flex">
+      <div>
+        <div><b style="color:var(--bone)">PROTOTYPE / SWITCH</b> · Native Horizon reimplementation</div>
+        <div class="fine">更新于 2026-10-25 · 轮次 850 · 交付 844</div>
+        <div class="fine">不公开源码 · 仅发布 NRO 构建</div>
+      </div>
+      <div>
+        <div class="fine">渲染：mesa-switch NVK · 平台：libnx · 视频：FFmpeg</div>
+        <div class="fine">分发：NRO 构建（不含任何游戏资源）</div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
