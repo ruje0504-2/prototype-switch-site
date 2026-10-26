@@ -89,7 +89,7 @@
 
   .panel{border:1px solid var(--line);border-radius:16px;padding:22px;background:rgba(236,231,221,.025)}
   .bar{height:9px;border-radius:999px;background:#211d27;overflow:hidden;margin:12px 0 8px}
-  .bar > i{display:block;height:100%;width:68%;border-radius:999px;
+  .bar > i{display:block;height:100%;width:69%;border-radius:999px;
     background:linear-gradient(90deg,var(--blood2),var(--blood) 55%,var(--vein))}
   .row{display:flex;justify-content:space-between;gap:14px;padding:10px 0;border-bottom:1px dashed rgba(236,231,221,.1);font-size:14px}
   .row:last-child{border-bottom:0}
@@ -155,17 +155,17 @@
     </p>
 
     <div class="chips">
-      <span class="chip">Round <b>884</b></span>
-      <span class="chip">Commits <b>936</b></span>
+      <span class="chip">Round <b>897</b></span>
+      <span class="chip">Commits <b>949</b></span>
       <span class="chip">Code size <b>420k+ lines</b></span>
-      <span class="chip">NRO <b>31,543,352 B</b></span>
+      <span class="chip">NRO <b>31,674,424 B</b></span>
       <span class="chip">Backend <b>mesa-switch NVK</b></span>
     </div>
 
     <div class="cta">
       <a class="btn primary" href="#install">Download &amp; Install <small>NRO</small></a>
       <a class="btn" href="#log">Changelog <small>R850</small></a>
-      <a class="btn" href="#status">Progress <small>~68%</small></a>
+      <a class="btn" href="#status">Progress <small>~69%</small></a>
     </div>
     <p class="fine" style="margin-top:14px">Not released yet — stay tuned</p>
   </div>
@@ -195,11 +195,11 @@
   <p class="sub">Measured against the playable-prologue bar: the player must be controllable and missions must trigger. Subsystem completeness is not playability.</p>
 
   <div class="panel">
-    <div class="row"><span>Playable prologue (acceptance bar)</span><span class="v">~68%</span></div>
+    <div class="row"><span>Playable prologue (acceptance bar)</span><span class="v">~69%</span></div>
     <div class="bar"><i></i></div>
-    <div class="row"><span>Published release</span><span class="v">884 · origin/main</span></div>
-    <div class="row"><span>Latest local</span><span class="v">884 · 7c1da799</span></div>
-    <div class="row"><span>Current source_id</span><span class="v">4e1a8868…a8a71</span></div>
+    <div class="row"><span>Published release</span><span class="v">894 · origin/main</span></div>
+    <div class="row"><span>Latest local</span><span class="v">897 · bd92f162</span></div>
+    <div class="row"><span>Current source_id</span><span class="v">eec06574…c5766c</span></div>
     <div class="row"><span>Device FPS (New Game scene)</span><span class="v">46–49 FPS @ stock clocks</span></div>
   </div>
 
@@ -212,7 +212,7 @@
       <tr><td>Frontend / HUD / movies</td><td><span class="tag t-done">In place</span></td><td>158 hardware-decoded movies, Chinese patch, Extras entry</td></tr>
       <tr><td>GPU particles</td><td><span class="tag t-act">Wrapping up</span></td><td>Four shapes and Billboard in; default world activation pending</td></tr>
       <tr><td>Real player loop</td><td><span class="tag t-act">In progress</span></td><td>38 components assembled; landing / wall-climb still open</td></tr>
-      <tr><td>Missions / combat</td><td><span class="tag t-act">In progress</span></td><td>GM02 Health producers wired; objectives/damage/enemies/death-retry pending</td></tr>
+      <tr><td>Missions / combat</td><td><span class="tag t-act">In progress</span></td><td>GM02 HitEffect resource layer wired; Match/producers/GameRuntime install, objectives/enemies/death-retry pending</td></tr>
       <tr><td>Save / Extras effects</td><td><span class="tag t-todo">Pending</span></td><td>DB read/write and slots done; full load pending</td></tr>
     </tbody>
   </table>
@@ -258,6 +258,10 @@
 <section class="wrap pad" id="log">
   <h2 class="h2"><span class="n">05</span> Recent updates</h2>
   <div class="tl">
+    <div class="ev"><div class="d">2026-10-26 · R897</div><h4>HitEffect resource bank wired</h4>
+      <p class="dim">49 authored classes, 45 original lifecycle observations, 3214-node topology identical; 13 host/13 memory + dual NVK. Match/producers/GameRuntime install still pending.</p></div>
+    <div class="ev"><div class="d">2026-10-26 · R894–896</div><h4>Obstacle protocol / AI predicates / camera shake</h4>
+      <p class="dim">OBT02 native obstacle protocol adopted; GM02 AI common predicates and tempo wired; CameraShake source sampler restored.</p></div>
     <div class="ev"><div class="d">2026-10-26 · R884</div><h4>GM02 Health producers wired</h4>
       <p class="dim">NPC multipliers, commander action counts, scoring clock, factions, live difficulty and critical-health broadcast restored; original comparisons match, 18/19 host and memory, dual NVK.</p></div>
     <div class="ev"><div class="d">2026-10-26 · R882/883</div><h4>timerSet and collision-surface velocity angle</h4>
@@ -294,7 +298,7 @@
     <div class="flex">
       <div>
         <div><b style="color:var(--bone)">PROTOTYPE / SWITCH</b> · Native Horizon reimplementation</div>
-        <div class="fine">Updated 2026-10-26 · Round 884 · Delivery 884</div>
+        <div class="fine">Updated 2026-10-26 · Round 897 · Delivery 894</div>
         <div class="fine">Source may be released · blocked if the project moves to NVN · NRO only for now</div>
       </div>
       <div>
