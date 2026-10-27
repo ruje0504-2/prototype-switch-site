@@ -89,7 +89,7 @@
 
   .panel{border:1px solid var(--line);border-radius:16px;padding:22px;background:rgba(236,231,221,.025)}
   .bar{height:9px;border-radius:999px;background:#211d27;overflow:hidden;margin:12px 0 8px}
-  .bar > i{display:block;height:100%;width:70%;border-radius:999px;
+  .bar > i{display:block;height:100%;width:71%;border-radius:999px;
     background:linear-gradient(90deg,var(--blood2),var(--blood) 55%,var(--vein))}
   .row{display:flex;justify-content:space-between;gap:14px;padding:10px 0;border-bottom:1px dashed rgba(236,231,221,.1);font-size:14px}
   .row:last-child{border-bottom:0}
@@ -155,17 +155,17 @@
     </p>
 
     <div class="chips">
-      <span class="chip">Round <b>900</b></span>
-      <span class="chip">Commits <b>952</b></span>
+      <span class="chip">Round <b>904</b></span>
+      <span class="chip">Commits <b>956</b></span>
       <span class="chip">Code size <b>420k+ lines</b></span>
-      <span class="chip">NRO <b>31,699,000 B</b></span>
+      <span class="chip">NRO <b>31,735,864 B</b></span>
       <span class="chip">Backend <b>mesa-switch NVK</b></span>
     </div>
 
     <div class="cta">
       <a class="btn primary" href="#install">Download &amp; Install <small>NRO</small></a>
       <a class="btn" href="#log">Changelog <small>R850</small></a>
-      <a class="btn" href="#status">Progress <small>~70%</small></a>
+      <a class="btn" href="#status">Progress <small>~71%</small></a>
     </div>
     <p class="fine" style="margin-top:14px">Not released yet — stay tuned</p>
   </div>
@@ -195,11 +195,11 @@
   <p class="sub">Measured against the playable-prologue bar: the player must be controllable and missions must trigger. Subsystem completeness is not playability.</p>
 
   <div class="panel">
-    <div class="row"><span>Playable prologue (acceptance bar)</span><span class="v">~70%</span></div>
+    <div class="row"><span>Playable prologue (acceptance bar)</span><span class="v">~71%</span></div>
     <div class="bar"><i></i></div>
-    <div class="row"><span>Published release</span><span class="v">894 · origin/main</span></div>
-    <div class="row"><span>Latest local</span><span class="v">900 · f4a5091d</span></div>
-    <div class="row"><span>Current source_id</span><span class="v">6582b9d5…c7b0b2</span></div>
+    <div class="row"><span>Published release</span><span class="v">904 · origin/main</span></div>
+    <div class="row"><span>Latest local</span><span class="v">904 · 30685642</span></div>
+    <div class="row"><span>Current source_id</span><span class="v">0b8fc885…d8ec</span></div>
     <div class="row"><span>Device FPS (New Game scene)</span><span class="v">46–49 FPS @ stock clocks</span></div>
   </div>
 
@@ -212,7 +212,7 @@
       <tr><td>Frontend / HUD / movies</td><td><span class="tag t-done">In place</span></td><td>158 hardware-decoded movies, Chinese patch, Extras entry</td></tr>
       <tr><td>GPU particles</td><td><span class="tag t-act">Wrapping up</span></td><td>Four shapes and Billboard in; default world activation pending</td></tr>
       <tr><td>Real player loop</td><td><span class="tag t-act">In progress</span></td><td>38 components assembled; landing / wall-climb still open</td></tr>
-      <tr><td>Missions / combat</td><td><span class="tag t-act">In progress</span></td><td>GM02 packages accepted (Health/targeting/throw/mission hints/damage/camera shake/AI conditions/targets/collectibles/HitEffect production); A05/M04 in flight; enemy behavior/mission progression/death-retry pending</td></tr>
+      <tr><td>Missions / combat</td><td><span class="tag t-act">In progress</span></td><td>GM02 packages accepted (Health/targeting/throw/missions/damage/camera/AI conditions and states/HitEffect conditions and decals); HDC02/HPA01 in flight; enemy behavior/mission progression/death-retry pending</td></tr>
       <tr><td>Save / Extras effects</td><td><span class="tag t-todo">Pending</span></td><td>DB read/write and slots done; full load pending</td></tr>
     </tbody>
   </table>
@@ -258,6 +258,12 @@
 <section class="wrap pad" id="log">
   <h2 class="h2"><span class="n">05</span> Recent updates</h2>
   <div class="tl">
+    <div class="ev"><div class="d">2026-10-26 · R904</div><h4>HFC02 shared conditions accepted</h4>
+      <p class="dim">maybe/health/grabbableClass wired into HitEffect; Gemini's 8 files adopted, Main fixed foreign-thread fresh-init state write.</p></div>
+    <div class="ev"><div class="d">2026-10-26 · R903</div><h4>DecalTrack and HDC01</h4>
+      <p class="dim">86 original + 12 constructed tracks, 540 executions, 196 decal requests / 116 sound calls consistent; Kimi geometry files adopted.</p></div>
+    <div class="ev"><div class="d">2026-10-26 · R902</div><h4>A05 AI state bridge</h4>
+      <p class="dim">inFormation/inAlertMode and 120 emotion actions restored; 10 host/10 memory + dual NVK.</p></div>
     <div class="ev"><div class="d">2026-10-26 · R900</div><h4>GM02-A04 target conditions accepted</h4>
       <p class="dim">132 authored, 1225 evaluations, 1152 groups matching the original replay; 9 host/9 memory + dual NVK. A05 (AI state/formation) dispatched.</p></div>
     <div class="ev"><div class="d">2026-10-26 · R899</div><h4>HitEffect production and resource wiring</h4>
@@ -266,8 +272,6 @@
       <p class="dim">Real collectible enumeration, two-parameter Lua, mission initialTracks and GO admission wired; 7 host/7 memory + dual NVK.</p></div>
     <div class="ev"><div class="d">2026-10-26 · R897</div><h4>HitEffect resource bank wired</h4>
       <p class="dim">49 authored classes, 45 original lifecycle observations, 3214-node topology identical; 13 host/13 memory + dual NVK. Match/producers/GameRuntime install still pending.</p></div>
-    <div class="ev"><div class="d">2026-10-26 · R894–896</div><h4>Obstacle protocol / AI predicates / camera shake</h4>
-      <p class="dim">OBT02 native obstacle protocol adopted; GM02 AI common predicates and tempo wired; CameraShake source sampler restored.</p></div>
     <div class="ev"><div class="d">2026-10-26 · R882/883</div><h4>timerSet and collision-surface velocity angle</h4>
       <p class="dim">timerSet wired and real sprint-up-wall verified; collision-surface velocity angle matched against the original.</p></div>
     <div class="ev"><div class="d">2026-10-25 · R850</div><h4>Hit parameters &amp; HUD scene events</h4>
@@ -302,7 +306,7 @@
     <div class="flex">
       <div>
         <div><b style="color:var(--bone)">PROTOTYPE / SWITCH</b> · Native Horizon reimplementation</div>
-        <div class="fine">Updated 2026-10-26 · Round 900 · Delivery 894</div>
+        <div class="fine">Updated 2026-10-26 · Round 904 · Delivery 904</div>
         <div class="fine">Source may be released · blocked if the project moves to NVN · NRO only for now</div>
       </div>
       <div>
