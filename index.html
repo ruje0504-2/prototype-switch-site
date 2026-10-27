@@ -88,7 +88,7 @@
 
   .panel{border:1px solid var(--line);border-radius:16px;padding:22px;background:rgba(236,231,221,.025)}
   .bar{height:9px;border-radius:999px;background:#211d27;overflow:hidden;margin:12px 0 8px}
-  .bar > i{display:block;height:100%;width:71%;border-radius:999px;
+  .bar > i{display:block;height:100%;width:72%;border-radius:999px;
     background:linear-gradient(90deg,var(--blood2),var(--blood) 55%,var(--vein))}
   .row{display:flex;justify-content:space-between;gap:14px;padding:10px 0;border-bottom:1px dashed rgba(236,231,221,.1);font-size:14px}
   .row:last-child{border-bottom:0}
@@ -153,17 +153,17 @@
     </p>
 
     <div class="chips">
-      <span class="chip">轮次 <b>904</b></span>
-      <span class="chip">提交 <b>956</b></span>
+      <span class="chip">轮次 <b>910</b></span>
+      <span class="chip">提交 <b>962</b></span>
       <span class="chip">代码规模 <b>42 万行+</b></span>
-      <span class="chip">NRO <b>31,735,864 B</b></span>
+      <span class="chip">NRO <b>31,764,536 B</b></span>
       <span class="chip">后端 <b>mesa-switch NVK</b></span>
     </div>
 
     <div class="cta">
       <a class="btn primary" href="#install">下载与安装 <small>NRO</small></a>
       <a class="btn" href="#log">更新日志 <small>R850</small></a>
-      <a class="btn" href="#status">当前进度 <small>~71%</small></a>
+      <a class="btn" href="#status">当前进度 <small>~72%</small></a>
     </div>
     <p class="fine" style="margin-top:14px">还未推出，敬请期待</p>
   </div>
@@ -193,11 +193,11 @@
   <p class="sub">按"可玩序章"验收口径统计：玩家能操控、任务能触发才算过关，底层子系统完成度不等于可玩度。</p>
 
   <div class="panel">
-    <div class="row"><span>可玩序章（验收口径）</span><span class="v">~71%</span></div>
+    <div class="row"><span>可玩序章（验收口径）</span><span class="v">~72%</span></div>
     <div class="bar"><i></i></div>
     <div class="row"><span>已发布版本</span><span class="v">904 · origin/main</span></div>
-    <div class="row"><span>本地最新</span><span class="v">904 · 30685642</span></div>
-    <div class="row"><span>当前 source_id</span><span class="v">0b8fc885…d8ec</span></div>
+    <div class="row"><span>本地最新</span><span class="v">910 · b8247116</span></div>
+    <div class="row"><span>当前 source_id</span><span class="v">ae4d325a…eab3</span></div>
     <div class="row"><span>实机帧率（New Game 场景）</span><span class="v">默频 46–49 FPS</span></div>
   </div>
 
@@ -210,7 +210,7 @@
       <tr><td>前端 / HUD / 影片</td><td><span class="tag t-done">已接通</span></td><td>158 段硬解、中文补丁、Extras 入口</td></tr>
       <tr><td>GPU 粒子</td><td><span class="tag t-act">收尾</span></td><td>四形状与 Billboard 已入，默认世界激活待接</td></tr>
       <tr><td>真实玩家闭环</td><td><span class="tag t-act">进行中</span></td><td>38 组件已装配，落地/爬墙未闭合</td></tr>
-      <tr><td>任务 / 战斗</td><td><span class="tag t-act">进行中</span></td><td>GM02 十余包已验收（Health/选敌/投掷/任务/伤害/相机/AI 条件与状态/HitEffect 条件与贴花）；HDC02/HPA01 在途，敌人行为/任务推进/死亡重试待接</td></tr>
+      <tr><td>任务 / 战斗</td><td><span class="tag t-act">进行中</span></td><td>GM02 十余包已验收（Health/选敌/投掷/任务/伤害/相机/AI 条件与 owner/贴花裁剪与渲染/位置音效）；完整墙跑与敌人行为/任务推进/死亡重试待接</td></tr>
       <tr><td>存档 / Extras 效果</td><td><span class="tag t-todo">待接</span></td><td>DB 读写与槽位已通，完整载入待接</td></tr>
     </tbody>
   </table>
@@ -256,6 +256,12 @@
 <section class="wrap pad" id="log">
   <h2 class="h2"><span class="n">05</span> 最近更新</h2>
   <div class="tl">
+    <div class="ev"><div class="d">2026-10-26 · R910</div><h4>位置音效验收</h4>
+      <p class="dim">HPA01 八文件直接采用；213 原版 + 8 构造、442 执行、9 组位置对照，12 host/12 内存/双 NVK；SoundTrack/Decal 音效已绑。</p></div>
+    <div class="ev"><div class="d">2026-10-26 · R909</div><h4>真实碰撞贴花接线</h4>
+      <p class="dim">HDC02 六文件采用，补正向 frame 与类型化 manager/GameRuntime；11 原版/1324 字一致，5 host/5 内存/双 NVK。</p></div>
+    <div class="ev"><div class="d">2026-10-26 · R908</div><h4>静态贴花渲染</h4>
+      <p class="dim">真实 creator/FIFO/Drawable 与静态 type0x200 GPU 接通；实际 Mac GPU/GPU 内存各 1 通过、双 NVK。</p></div>
     <div class="ev"><div class="d">2026-10-26 · R904</div><h4>HFC02 共享条件验收</h4>
       <p class="dim">maybe/health/grabbableClass 接入 HitEffect；Gemini 8 文件直接采用，Main 修正外线程 fresh-init 先写状态。</p></div>
     <div class="ev"><div class="d">2026-10-26 · R903</div><h4>DecalTrack 与 HDC01</h4>
@@ -268,8 +274,6 @@
       <p class="dim">真实射线/WorldDamage → 统一 Context → 64 序列池 → 已安装 hiteffects bank；38 组原版对照、16 host/16 内存。</p></div>
     <div class="ev"><div class="d">2026-10-26 · R898</div><h4>M03 收集物生成验收</h4>
       <p class="dim">真实收集物枚举、双参数 Lua、任务 initialTracks 与 GO 准入接通；7 host/7 内存 + 双 NVK。</p></div>
-    <div class="ev"><div class="d">2026-10-26 · R897</div><h4>HitEffect 资源 bank 接回</h4>
-      <p class="dim">49 authored 类、45 原版生命周期观察、3214 节点拓扑一致；13 host/13 内存 + 双 NVK。Match/生产者/GameRuntime 安装仍待接。</p></div>
     <div class="ev"><div class="d">2026-10-26 · R882/883</div><h4>timerSet 与碰撞面速度夹角</h4>
       <p class="dim">timerSet 接通，真实奔跑沿墙上升验证；碰撞面速度夹角通过原版对照。</p></div>
     <div class="ev"><div class="d">2026-10-25 · R850</div><h4>Hit 参数与 HUD 场景事件</h4>
@@ -304,7 +308,7 @@
     <div class="flex">
       <div>
         <div><b style="color:var(--bone)">PROTOTYPE / SWITCH</b> · Native Horizon reimplementation</div>
-        <div class="fine">更新于 2026-10-26 · 轮次 904 · 交付 904</div>
+        <div class="fine">更新于 2026-10-27 · 轮次 910 · 交付 904</div>
         <div class="fine">源码可能发布 · 若转 NVN 则无法公开 · 目前仅发布 NRO</div>
       </div>
       <div>
