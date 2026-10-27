@@ -298,10 +298,11 @@
 <section class="wrap pad">
   <h2 class="h2"><span class="n">06</span> Tech stack</h2>
   <div class="stack">
-    <span>C11</span><span>Vulkan 1.2</span><span>mesa-switch NVK</span><span>libnx</span>
+    <span>C11</span><span>Vulkan 1.2+</span><span>mesa-switch NVK 26.2.4</span><span>libnx</span>
     <span>FFmpeg (avcodec/swscale)</span><span>Lua 5.1</span><span>ARM64 / NEON</span>
     <span>CMake + devkitA64</span><span>ASan / UBSan</span>
   </div>
+  <p class="fine" style="margin-top:10px">The app requests the Vulkan 1.2 API; the mesa-switch NVK 26.2.4 driver supports ≥1.3. Features above the 1.2 baseline depend on what the driver exposes.</p>
 </section>
 
 <footer>
