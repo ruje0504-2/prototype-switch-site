@@ -153,8 +153,8 @@
     </p>
 
     <div class="chips">
-      <span class="chip">轮次 <b>910</b></span>
-      <span class="chip">提交 <b>962</b></span>
+      <span class="chip">轮次 <b>911</b></span>
+      <span class="chip">提交 <b>963</b></span>
       <span class="chip">代码规模 <b>42 万行+</b></span>
       <span class="chip">NRO <b>31,764,536 B</b></span>
       <span class="chip">后端 <b>mesa-switch NVK</b></span>
@@ -196,8 +196,8 @@
     <div class="row"><span>可玩序章（验收口径）</span><span class="v">~72%</span></div>
     <div class="bar"><i></i></div>
     <div class="row"><span>已发布版本</span><span class="v">904 · origin/main</span></div>
-    <div class="row"><span>本地最新</span><span class="v">910 · b8247116</span></div>
-    <div class="row"><span>当前 source_id</span><span class="v">ae4d325a…eab3</span></div>
+    <div class="row"><span>本地最新</span><span class="v">911 · a2f66d82</span></div>
+    <div class="row"><span>当前 source_id</span><span class="v">e16385ce…ada8</span></div>
     <div class="row"><span>实机帧率（New Game 场景）</span><span class="v">默频 46–49 FPS</span></div>
   </div>
 
@@ -210,7 +210,7 @@
       <tr><td>前端 / HUD / 影片</td><td><span class="tag t-done">已接通</span></td><td>158 段硬解、中文补丁、Extras 入口</td></tr>
       <tr><td>GPU 粒子</td><td><span class="tag t-act">收尾</span></td><td>四形状与 Billboard 已入，默认世界激活待接</td></tr>
       <tr><td>真实玩家闭环</td><td><span class="tag t-act">进行中</span></td><td>38 组件已装配，落地/爬墙未闭合</td></tr>
-      <tr><td>任务 / 战斗</td><td><span class="tag t-act">进行中</span></td><td>GM02 十余包已验收（Health/选敌/投掷/任务/伤害/相机/AI 条件与 owner/贴花裁剪与渲染/位置音效）；敌人行为/任务推进/死亡重试待接</td></tr>
+      <tr><td>任务 / 战斗</td><td><span class="tag t-act">进行中</span></td><td>GM02 十余包已验收（Health/选敌/投掷/任务/伤害/相机/AI A01–A06/贴花裁剪与渲染/位置音效）；A07 巡逻/目的地条件在途，任务推进/死亡重试待接</td></tr>
       <tr><td>存档 / Extras 效果</td><td><span class="tag t-todo">待接</span></td><td>DB 读写与槽位已通，完整载入待接</td></tr>
     </tbody>
   </table>
@@ -256,12 +256,12 @@
 <section class="wrap pad" id="log">
   <h2 class="h2"><span class="n">05</span> 最近更新</h2>
   <div class="tl">
+    <div class="ev"><div class="d">2026-10-27 · R911</div><h4>Effect 记录接受真实待消费 CREATE</h4>
+      <p class="dim">原版 107da040 保留代数句柄排入 CREATE、1080d840 创建记录的顺序已对齐；待创建记录仅在同 FIFO 已有 CREATE 时准入，队列满/失败保留队首。</p></div>
     <div class="ev"><div class="d">2026-10-26 · R910</div><h4>位置音效验收</h4>
       <p class="dim">HPA01 八文件直接采用；213 原版 + 8 构造、442 执行、9 组位置对照，12 host/12 内存/双 NVK；SoundTrack/Decal 音效已绑。</p></div>
     <div class="ev"><div class="d">2026-10-26 · R909</div><h4>真实碰撞贴花接线</h4>
       <p class="dim">HDC02 六文件采用，补正向 frame 与类型化 manager/GameRuntime；11 原版/1324 字一致，5 host/5 内存/双 NVK。</p></div>
-    <div class="ev"><div class="d">2026-10-26 · R908</div><h4>静态贴花渲染</h4>
-      <p class="dim">真实 creator/FIFO/Drawable 与静态 type0x200 GPU 接通；实际 Mac GPU/GPU 内存各 1 通过、双 NVK。</p></div>
     <div class="ev"><div class="d">2026-10-26 · R904</div><h4>HFC02 共享条件验收</h4>
       <p class="dim">maybe/health/grabbableClass 接入 HitEffect；Gemini 8 文件直接采用，Main 修正外线程 fresh-init 先写状态。</p></div>
     <div class="ev"><div class="d">2026-10-26 · R903</div><h4>DecalTrack 与 HDC01</h4>
@@ -308,7 +308,7 @@
     <div class="flex">
       <div>
         <div><b style="color:var(--bone)">PROTOTYPE / SWITCH</b> · Native Horizon reimplementation</div>
-        <div class="fine">更新于 2026-10-27 · 轮次 910 · 交付 904</div>
+        <div class="fine">更新于 2026-10-27 · 轮次 911 · 交付 904</div>
         <div class="fine">源码可能发布 · 若转 NVN 则无法公开 · 目前仅发布 NRO</div>
       </div>
       <div>
