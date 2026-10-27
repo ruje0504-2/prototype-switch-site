@@ -89,7 +89,7 @@
 
   .panel{border:1px solid var(--line);border-radius:16px;padding:22px;background:rgba(236,231,221,.025)}
   .bar{height:9px;border-radius:999px;background:#211d27;overflow:hidden;margin:12px 0 8px}
-  .bar > i{display:block;height:100%;width:74%;border-radius:999px;
+  .bar > i{display:block;height:100%;width:75%;border-radius:999px;
     background:linear-gradient(90deg,var(--blood2),var(--blood) 55%,var(--vein))}
   .row{display:flex;justify-content:space-between;gap:14px;padding:10px 0;border-bottom:1px dashed rgba(236,231,221,.1);font-size:14px}
   .row:last-child{border-bottom:0}
@@ -155,17 +155,17 @@
     </p>
 
     <div class="chips">
-      <span class="chip">Round <b>924</b></span>
-      <span class="chip">Commits <b>976</b></span>
-      <span class="chip">Code size <b>537k lines</b></span>
-      <span class="chip">NRO <b>31,817,784 B</b></span>
+      <span class="chip">Round <b>929</b></span>
+      <span class="chip">Commits <b>981</b></span>
+      <span class="chip">Code size <b>554k lines</b></span>
+      <span class="chip">NRO <b>31,875,128 B</b></span>
       <span class="chip">Backend <b>mesa-switch NVK</b></span>
     </div>
 
     <div class="cta">
       <a class="btn primary" href="#install">Download &amp; Install <small>NRO</small></a>
       <a class="btn" href="#log">Changelog <small>R850</small></a>
-      <a class="btn" href="#status">Progress <small>~74%</small></a>
+      <a class="btn" href="#status">Progress <small>~75%</small></a>
     </div>
     <p class="fine" style="margin-top:14px">Not released yet — stay tuned</p>
   </div>
@@ -195,11 +195,11 @@
   <p class="sub">Measured against the playable-prologue bar: the player must be controllable and missions must trigger. Subsystem completeness is not playability.</p>
 
   <div class="panel">
-    <div class="row"><span>Playable prologue (acceptance bar)</span><span class="v">~74%</span></div>
+    <div class="row"><span>Playable prologue (acceptance bar)</span><span class="v">~75%</span></div>
     <div class="bar"><i></i></div>
     <div class="row"><span>Published release</span><span class="v">924 · origin/main</span></div>
-    <div class="row"><span>Latest local</span><span class="v">924 · c33d4f47</span></div>
-    <div class="row"><span>Current source_id</span><span class="v">9286e7ea…5ba8</span></div>
+    <div class="row"><span>Latest local</span><span class="v">929 · 2b604648</span></div>
+    <div class="row"><span>Current source_id</span><span class="v">e65883eb…4197d</span></div>
     <div class="row"><span>Device FPS (New Game scene)</span><span class="v">46–49 FPS @ stock clocks</span></div>
   </div>
 
@@ -212,7 +212,7 @@
       <tr><td>Frontend / HUD / movies</td><td><span class="tag t-done">In place</span></td><td>158 hardware-decoded movies, Chinese patch, Extras entry</td></tr>
       <tr><td>GPU particles</td><td><span class="tag t-act">Wrapping up</span></td><td>Four shapes and Billboard in; default world activation pending</td></tr>
       <tr><td>Real player loop</td><td><span class="tag t-act">In progress</span></td><td>38 components assembled; wall-run passed landing (padRumbleSet); default activation wiring in progress</td></tr>
-      <tr><td>Missions / combat</td><td><span class="tag t-act">In progress</span></td><td>GM02 packages accepted (Health/targeting/throw/missions/damage/camera/AI A01–A06/decals/HitEffect particle action and Effect lifecycle/M05); A07 in flight; mission progression/death-retry pending</td></tr>
+      <tr><td>Missions / combat</td><td><span class="tag t-act">In progress</span></td><td>GM02 packages accepted (Health/targeting/throw/missions/damage/camera/AI A01–A09 incl. patrol/destination/aim/decals/HitEffect particles and Effect lifecycle/M05/T05 reservation); mission progression/death-retry pending</td></tr>
       <tr><td>Save / Extras effects</td><td><span class="tag t-todo">Pending</span></td><td>DB read/write and slots done; full load pending</td></tr>
     </tbody>
   </table>
@@ -258,10 +258,14 @@
 <section class="wrap pad" id="log">
   <h2 class="h2"><span class="n">05</span> Recent updates</h2>
   <div class="tl">
+    <div class="ev"><div class="d">2026-10-27 · R929</div><h4>T05 position reservation</h4>
+      <p class="dim">reservePosition node and real reservation lifecycle wired; AI patrol/destination condition chain completed.</p></div>
+    <div class="ev"><div class="d">2026-10-27 · R926–928</div><h4>A07/A08/A09 reviewed and integrated</h4>
+      <p class="dim">Patrol/destination conditions, aim actions/conditions and destination actions accepted back-to-back; AI chain A01–A09 takes shape.</p></div>
+    <div class="ev"><div class="d">2026-10-27 · R925</div><h4>Real effect resources and frame producers</h4>
+      <p class="dim">Effect archetypes and frame producers wired; effect creation/rendering share one path.</p></div>
     <div class="ev"><div class="d">2026-10-27 · R924</div><h4>PadRumbleSet landing track</h4>
       <p class="dim">Wall-run chain passed landing (Motion 5041/5045); default GameInit/player/camera activation keeps replacing the startup fixture.</p></div>
-    <div class="ev"><div class="d">2026-10-27 · R923</div><h4>HitEffect particle action</h4>
-      <p class="dim">Particle action wired into the real effect create/render chain, sharing Effect archetypes and producers.</p></div>
     <div class="ev"><div class="d">2026-10-27 · R922</div><h4>Locomotion policy</h4>
       <p class="dim">Locomotion policy wired, paving the way for default-player movement/wall-run switching.</p></div>
     <div class="ev"><div class="d">2026-10-27 · R917</div><h4>Effect scaling wired</h4>
@@ -319,7 +323,7 @@
     <div class="flex">
       <div>
         <div><b style="color:var(--bone)">PROTOTYPE / SWITCH</b> · Native Horizon reimplementation</div>
-        <div class="fine">Updated 2026-10-27 · Round 924 · Delivery 924</div>
+        <div class="fine">Updated 2026-10-27 · Round 929 · Delivery 924</div>
         <div class="fine">Source may be released · blocked if the project moves to NVN · NRO only for now</div>
       </div>
       <div>

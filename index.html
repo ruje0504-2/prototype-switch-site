@@ -88,7 +88,7 @@
 
   .panel{border:1px solid var(--line);border-radius:16px;padding:22px;background:rgba(236,231,221,.025)}
   .bar{height:9px;border-radius:999px;background:#211d27;overflow:hidden;margin:12px 0 8px}
-  .bar > i{display:block;height:100%;width:74%;border-radius:999px;
+  .bar > i{display:block;height:100%;width:75%;border-radius:999px;
     background:linear-gradient(90deg,var(--blood2),var(--blood) 55%,var(--vein))}
   .row{display:flex;justify-content:space-between;gap:14px;padding:10px 0;border-bottom:1px dashed rgba(236,231,221,.1);font-size:14px}
   .row:last-child{border-bottom:0}
@@ -153,17 +153,17 @@
     </p>
 
     <div class="chips">
-      <span class="chip">轮次 <b>924</b></span>
-      <span class="chip">提交 <b>976</b></span>
-      <span class="chip">代码规模 <b>53.7 万行</b></span>
-      <span class="chip">NRO <b>31,817,784 B</b></span>
+      <span class="chip">轮次 <b>929</b></span>
+      <span class="chip">提交 <b>981</b></span>
+      <span class="chip">代码规模 <b>55.4 万行</b></span>
+      <span class="chip">NRO <b>31,875,128 B</b></span>
       <span class="chip">后端 <b>mesa-switch NVK</b></span>
     </div>
 
     <div class="cta">
       <a class="btn primary" href="#install">下载与安装 <small>NRO</small></a>
       <a class="btn" href="#log">更新日志 <small>R850</small></a>
-      <a class="btn" href="#status">当前进度 <small>~74%</small></a>
+      <a class="btn" href="#status">当前进度 <small>~75%</small></a>
     </div>
     <p class="fine" style="margin-top:14px">还未推出，敬请期待</p>
   </div>
@@ -193,11 +193,11 @@
   <p class="sub">按"可玩序章"验收口径统计：玩家能操控、任务能触发才算过关，底层子系统完成度不等于可玩度。</p>
 
   <div class="panel">
-    <div class="row"><span>可玩序章（验收口径）</span><span class="v">~74%</span></div>
+    <div class="row"><span>可玩序章（验收口径）</span><span class="v">~75%</span></div>
     <div class="bar"><i></i></div>
     <div class="row"><span>已发布版本</span><span class="v">924 · origin/main</span></div>
-    <div class="row"><span>本地最新</span><span class="v">924 · c33d4f47</span></div>
-    <div class="row"><span>当前 source_id</span><span class="v">9286e7ea…5ba8</span></div>
+    <div class="row"><span>本地最新</span><span class="v">929 · 2b604648</span></div>
+    <div class="row"><span>当前 source_id</span><span class="v">e65883eb…4197d</span></div>
     <div class="row"><span>实机帧率（New Game 场景）</span><span class="v">默频 46–49 FPS</span></div>
   </div>
 
@@ -210,7 +210,7 @@
       <tr><td>前端 / HUD / 影片</td><td><span class="tag t-done">已接通</span></td><td>158 段硬解、中文补丁、Extras 入口</td></tr>
       <tr><td>GPU 粒子</td><td><span class="tag t-act">收尾</span></td><td>四形状与 Billboard 已入，默认世界激活待接</td></tr>
       <tr><td>真实玩家闭环</td><td><span class="tag t-act">进行中</span></td><td>38 组件已装配；墙跑已过落地（padRumbleSet），默认激活接线中</td></tr>
-      <tr><td>任务 / 战斗</td><td><span class="tag t-act">进行中</span></td><td>GM02 十余包已验收（Health/选敌/投掷/任务/伤害/相机/AI A01–A06/贴花/HitEffect 粒子 Action 与 Effect 生命周期/M05）；A07 在途，任务推进/死亡重试待接</td></tr>
+      <tr><td>任务 / 战斗</td><td><span class="tag t-act">进行中</span></td><td>GM02 十余包已验收（Health/选敌/投掷/任务/伤害/相机/AI A01–A09 含巡逻·目的地·瞄准/贴花/HitEffect 粒子与 Effect 生命周期/M05/T05 位置预留）；任务推进/死亡重试待接</td></tr>
       <tr><td>存档 / Extras 效果</td><td><span class="tag t-todo">待接</span></td><td>DB 读写与槽位已通，完整载入待接</td></tr>
     </tbody>
   </table>
@@ -256,10 +256,14 @@
 <section class="wrap pad" id="log">
   <h2 class="h2"><span class="n">05</span> 最近更新</h2>
   <div class="tl">
+    <div class="ev"><div class="d">2026-10-27 · R929</div><h4>T05 位置预留</h4>
+      <p class="dim">reservePosition 节点与真实占位生命周期接入，AI 巡逻/目的地条件链补齐。</p></div>
+    <div class="ev"><div class="d">2026-10-27 · R926–928</div><h4>A07/A08/A09 主审接入</h4>
+      <p class="dim">巡逻/目的地条件、瞄准动作与条件、目的地动作三包连续验收，AI 行为链 A01–A09 成型。</p></div>
+    <div class="ev"><div class="d">2026-10-27 · R925</div><h4>真实效果资源与帧生产者</h4>
+      <p class="dim">Effect Archetype 与帧生产者接线，效果创建/渲染共享同一路径。</p></div>
     <div class="ev"><div class="d">2026-10-27 · R924</div><h4>PadRumbleSet 落地轨</h4>
       <p class="dim">墙跑动作链越过落地（Motion 5041/5045）；默认 GameInit/玩家/相机激活接线继续替换启动 fixture。</p></div>
-    <div class="ev"><div class="d">2026-10-27 · R923</div><h4>HitEffect 粒子 Action</h4>
-      <p class="dim">粒子 Action 接入真实效果创建/渲染链，共享 Effect Archetype 与生产者。</p></div>
     <div class="ev"><div class="d">2026-10-27 · R922</div><h4>移动策略接通</h4>
       <p class="dim">locomotion policy 接入，为默认玩家的移动/墙跑切换铺路。</p></div>
     <div class="ev"><div class="d">2026-10-27 · R917</div><h4>Effect 缩放接线</h4>
@@ -317,7 +321,7 @@
     <div class="flex">
       <div>
         <div><b style="color:var(--bone)">PROTOTYPE / SWITCH</b> · Native Horizon reimplementation</div>
-        <div class="fine">更新于 2026-10-27 · 轮次 924 · 交付 924</div>
+        <div class="fine">更新于 2026-10-27 · 轮次 929 · 交付 924</div>
         <div class="fine">源码可能发布 · 若转 NVN 则无法公开 · 目前仅发布 NRO</div>
       </div>
       <div>
