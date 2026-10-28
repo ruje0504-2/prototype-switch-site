@@ -89,7 +89,7 @@
 
   .panel{border:1px solid var(--line);border-radius:16px;padding:22px;background:rgba(236,231,221,.025)}
   .bar{height:9px;border-radius:999px;background:#211d27;overflow:hidden;margin:12px 0 8px}
-  .bar > i{display:block;height:100%;width:78%;border-radius:999px;
+  .bar > i{display:block;height:100%;width:80%;border-radius:999px;
     background:linear-gradient(90deg,var(--blood2),var(--blood) 55%,var(--vein))}
   .row{display:flex;justify-content:space-between;gap:14px;padding:10px 0;border-bottom:1px dashed rgba(236,231,221,.1);font-size:14px}
   .row:last-child{border-bottom:0}
@@ -165,7 +165,7 @@
     <div class="cta">
       <a class="btn primary" href="#install">Download &amp; Install <small>NRO</small></a>
       <a class="btn" href="#log">Changelog <small>R850</small></a>
-      <a class="btn" href="#status">Progress <small>~78%</small></a>
+      <a class="btn" href="#status">Progress <small>~80%</small></a>
     </div>
     <p class="fine" style="margin-top:14px">Not released yet — stay tuned</p>
   </div>
@@ -195,7 +195,7 @@
   <p class="sub">Measured against the playable-prologue bar: the player must be controllable and missions must trigger. Subsystem completeness is not playability.</p>
 
   <div class="panel">
-    <div class="row"><span>Playable prologue (acceptance bar)</span><span class="v">~78%</span></div>
+    <div class="row"><span>Playable prologue (acceptance bar)</span><span class="v">~80%</span></div>
     <div class="bar"><i></i></div>
     <div class="row"><span>Published release</span><span class="v">c33d4f47 · origin/main</span></div>
     <div class="row"><span>Latest local</span><span class="v">965 · 514d293a</span></div>
@@ -258,6 +258,8 @@
 <section class="wrap pad" id="log">
   <h2 class="h2"><span class="n">05</span> Recent updates</h2>
   <div class="tl">
+    <div class="ev"><div class="d">2026-10-28 · R958–965</div><h4>Effect scheduling / vehicle resources / particle updates</h4>
+      <p class="dim">Effect distance and fade, expiry and sub-effect stop transactions, four owned physics shape raycasts, vehicle ATEM metadata, manual particle transform and bounds, EffectManager CPU pool scheduling, particle completion ordering and default effect CPU update integration.</p></div>
     <div class="ev"><div class="d">auto · R965</div><h4>Main965 — default effect CPU update integration</h4>
       <p class="dim">Auto-updated: round 965, commits 1017.</p></div>
     <div class="ev"><div class="d">2026-10-27 · R934–939</div><h4>Motion / NIS / Vehicle resources and lifecycles</h4>
