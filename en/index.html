@@ -205,14 +205,14 @@
   <table style="margin-top:22px">
     <thead><tr><th>Area</th><th>Status</th><th>Notes</th></tr></thead>
     <tbody>
-      <tr><td>Renderer / resources / world</td><td><span class="tag t-done">In place</span></td><td>Multi-pass, materials, streaming, city zones</td></tr>
-      <tr><td>Physics / collision / ragdoll</td><td><span class="tag t-done">In place</span></td><td>Hit neighbor queries, support/IK, Air camera</td></tr>
-      <tr><td>Audio / dialogue</td><td><span class="tag t-act">In progress</span></td><td>File-based tickets wired; default scheduling pending</td></tr>
+      <tr><td>Renderer / resources / world</td><td><span class="tag t-done">In place</span></td><td>Multi-pass, materials, streaming, city zones; NVI visibility, water and Location sky wired</td></tr>
+      <tr><td>Physics / collision / ragdoll</td><td><span class="tag t-done">In place</span></td><td>Hit neighbour queries, support/IK, Air camera, physics shape raycasts</td></tr>
+      <tr><td>Audio / dialogue</td><td><span class="tag t-act">In progress</span></td><td>Positional audio / AudioZone / vehicle patches wired; original DSP and default dialogue scheduling remain</td></tr>
       <tr><td>Frontend / HUD / movies</td><td><span class="tag t-done">In place</span></td><td>158 hardware-decoded movies, Chinese patch, Extras entry</td></tr>
-      <tr><td>GPU particles</td><td><span class="tag t-act">Wrapping up</span></td><td>Four shapes and Billboard in; default world activation pending</td></tr>
-      <tr><td>Real player loop</td><td><span class="tag t-act">In progress</span></td><td>38 components assembled; wall-run passed landing (padRumbleSet); default activation wiring in progress</td></tr>
-      <tr><td>Missions / combat</td><td><span class="tag t-act">In progress</span></td><td>GM02 packages accepted (Health/targeting/throw/missions/damage/camera/AI A01–A09 incl. patrol/destination/aim/decals/HitEffect particles and Effect lifecycle/M05/T05 reservation); mission progression/death-retry pending</td></tr>
-      <tr><td>Save / Extras effects</td><td><span class="tag t-act">In progress</span></td><td>SVE01 returned for review (18 artifacts); world capture/commit/cancel, checkpoint, Lua sgm, NewGameFromExistingSlot, delete UI pending</td></tr>
+      <tr><td>GPU particles</td><td><span class="tag t-act">Wrapping up</span></td><td>Default actual calls + completion feedback + CPU update wired; EUP budget/fade pending</td></tr>
+      <tr><td>Real player loop</td><td><span class="tag t-act">In progress</span></td><td>Player package READY + e01m01_alex player-creation batch + InGame entry; default control/camera pending</td></tr>
+      <tr><td>Missions / combat</td><td><span class="tag t-act">In progress</span></td><td>GM02 A01–A13, T01–T06B, Ped behaviour, NPC instance pool, target selection wired; damage resolution/death-retry/mission progression pending</td></tr>
+      <tr><td>Save / Extras effects</td><td><span class="tag t-act">In progress</span></td><td>SVE01 base wired; full load / NewGameFromExistingSlot / delete UI pending</td></tr>
     </tbody>
   </table>
 </section>
