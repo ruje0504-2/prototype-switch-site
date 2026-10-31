@@ -282,6 +282,26 @@
   <p class="fine" style="margin-top:10px">The app requests the Vulkan 1.2 API; the mesa-switch NVK 26.2.4 driver supports ≥1.3. Features above the 1.2 baseline depend on what the driver exposes.</p>
 </section>
 
+<section class="wrap pad" id="collab">
+  <h2 class="h2"><span class="n">07</span> Collaboration &amp; models</h2>
+  <p class="sub">This port is not built by a single model. The main agent owns integration and final acceptance; other models only take bounded, independently verifiable work packages, each with a file whitelist, interface/ownership contract and a re-runnable verification recipe.</p>
+  <table>
+    <thead><tr><th>Role</th><th>Model</th><th>Scope</th><th>Boundary</th></tr></thead>
+    <tbody>
+      <tr><td>Main agent (local Codex)</td><td class="num">gpt-6-astra / max</td><td>Default prologue world/player/camera/physics/mission integration; shared graph/factory/GameRuntime; final acceptance and NRO</td><td>No whole-package outsourcing; only independently verifiable modules</td></tr>
+      <tr><td>Local Claude</td><td class="num">Opus 5.5 (medium/high/max)</td><td>Small tasks: single-file modules, tools/tests, small reviews</td><td>Mutually exclusive with remote Claude; one owner per package</td></tr>
+      <tr><td>Remote Claude</td><td class="num">Opus 5.5 / max (SSH CLI)</td><td>Complex independent modules: GM02 combat CPU, PVIS visibility, SVE saves, pedestrians/target selection</td><td>Pushes only its branch; after a refusal, new conversation, no re-dispatch</td></tr>
+      <tr><td>Kimi Code</td><td class="num">k3.1-pro</td><td>Independent modules and deep reviews; can continue others' terminal work</td><td>No Git/account/config/sleep-guard changes</td></tr>
+      <tr><td>Gemini</td><td class="num">4 Argon (low/medium/high)</td><td>Independent modules, original-behaviour recovery, cross-file call-chain and interface/lifecycle reviews</td><td>No Flash downgrade, no web UI; deliveries include coverage claims and file:line</td></tr>
+      <tr><td>WorkBuddy</td><td class="num">GPT-6.1-Sol</td><td>Small, bounded modules only</td><td>No more review assignments</td></tr>
+      <tr><td>Remote Codex (paused)</td><td class="num">gpt-6.1-sol / max / Fast</td><td>Previously complex modules and second opinions; same tier as Claude once resumed</td><td>Requires explicit user re-enable; no auto-resume</td></tr>
+      <tr><td>DeepSeek (not dispatched)</td><td class="num">—</td><td>Historically medium-complexity independent modules</td><td>Not on the current dispatch list</td></tr>
+    </tbody>
+  </table>
+  <p class="fine" style="margin-top:12px">Model rules: every channel specifies and verifies the actual model and effort, never silently downgraded; Claude stops if auto-downgraded to Opus 4.8; Fable 5.1 is off; Gemini never downgrades to Flash.</p>
+</section>
+
+
 <footer>
   <div class="wrap">
     <div class="law">
