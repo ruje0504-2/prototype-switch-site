@@ -294,8 +294,8 @@
       <tr><td>Kimi Code</td><td class="num">k3.1-pro</td><td>独立模块实现与深入审查，可接续已终态代理的剩余工作</td><td>不改 Git/账号/配置/防休眠</td></tr>
       <tr><td>Gemini</td><td class="num">4 Argon（low/medium/high）</td><td>独立模块、关键原版行为还原、跨文件调用链与接口/生命周期审查</td><td>不降级 Flash、不使用网页；交付附覆盖声明与 file:line</td></tr>
       <tr><td>WorkBuddy</td><td class="num">GPT-6.1-Sol</td><td>只做边界明确的小模块</td><td>不再派复核</td></tr>
-      <tr><td>远端 Codex（暂停）</td><td class="num">gpt-6-astra / gpt-6.1-sol（max/Fast）</td><td>曾承担复杂模块与第二意见；恢复后与 Claude 同级</td><td>需用户明确开启，禁止自动恢复</td></tr>
-      <tr><td>DeepSeek（未派发）</td><td class="num">V4.1-Flash（1017）</td><td>历史上承担中等复杂独立模块</td><td>当前不在派发名单</td></tr>
+      <tr><td>远端 Codex</td><td class="num">gpt-6-astra / gpt-6.1-sol（max/Fast）</td><td>复杂模块与第二意见；与 Claude 同级</td><td>只派独立复杂模块；文件/接口与其他代理互斥</td></tr>
+      <tr><td>DeepSeek</td><td class="num">V4.1-Flash（1017）</td><td>边界明确的中等复杂独立模块：资源/解析/状态/生命周期</td><td>每批限定一个真实阻塞；不改 Git/账号/配置</td></tr>
     </tbody>
   </table>
   <p class="fine" style="margin-top:12px">模型规则：所有通道显式指定并核对实际模型与 effort，不静默降级；Claude 自动降为 Opus 4.8 即停止该任务；Fable 5.1 需用户明确开启；Gemini 不降级 Flash。</p>
