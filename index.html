@@ -254,65 +254,19 @@
 
 <section class="wrap pad" id="log">
   <h2 class="h2"><span class="n">05</span> 最近更新</h2>
-  <div class="tl">
-    <div class="ev"><div class="d">auto · R1035</div><h4>1035 — 共享特效未创建时的序章行为与后续包定位</h4>
-      <p class="dim">自动更新：轮次 1035，提交 1087。</p></div>
-    <div class="ev"><div class="d">2026-10-30 · R995–1021</div><h4>行人链 / 目标选择 / LOD</h4>
-      <p class="dim">Alex 表情映射、行人模板冷加载与行为第 1–7 批、行人工厂/可调参数、ActorConfig ATEM、目标选择父逻辑两批、LRB LOD 渲染三批；NPC 实例与行人行为链成型。</p></div>
-    <div class="ev"><div class="d">auto · R1021</div><h4>Main1021 — 真实记录控制器与包动画绑定</h4>
-      <p class="dim">自动更新：轮次 1021，提交 1073。</p></div>
-    <div class="ev"><div class="d">2026-10-29 · R985–994</div><h4>NPC 实例链 / Alex 动画 / NIS 包</h4>
-      <p class="dim">Alex 动画与表情包、NIS 包生命周期、Playback 消费者、NPCAnimation 与共享 Puppet、Scenario/ObjectStateChanged、Alert 阵营与 Track、NPC 实例池与统一姿态队列、NPC 类型与 ShaderPalette 消费者（16 host/16 ASan、双 NVK）。</p></div>
-    <div class="ev"><div class="d">auto · R994</div><h4>第994轮：NPC类型、内嵌实例与ShaderPalette接入</h4>
-      <p class="dim">自动更新：轮次 994，提交 1046。</p></div>
-    <div class="ev"><div class="d">auto · R986</div><h4>Main986 — NIS包生命周期与默认服务接线</h4>
-      <p class="dim">自动更新：轮次 986，提交 1046。</p></div>
-    <div class="ev"><div class="d">2026-10-28 · R966–984</div><h4>默认包 / 车辆 / 场景资源大批接入</h4>
-      <p class="dim">车辆音频与 ATEM、Playback 动作与工厂、昼夜与 Scenario 属性/状态、GameObject 灯光、WorldBoundary/Heli、WorldTriggers、NIS 定位器、IntersectionSpawner、AmbientNavMesh、Location 天空远景、APF03/APF04 音频、TunnelVolume、CameraFloor、Heightmap 曼哈顿、包完成消息与 StateChange。</p></div>
-    <div class="ev"><div class="d">auto · R984</div><h4>Main984 — 包完成消息与 StateChange</h4>
-      <p class="dim">自动更新：轮次 984，提交 1036。</p></div>
-    <div class="ev"><div class="d">2026-10-28 · R958–965</div><h4>效果调度 / 车辆资源 / 粒子更新</h4>
-      <p class="dim">效果距离与淡出、到期与子效果停止、四类物理形状射线、车辆 ATEM 元数据、手动粒子变换与包围盒、EffectManager CPU 池调度、粒子完成顺序与默认效果 CPU 更新接入。</p></div>
-    <div class="ev"><div class="d">auto · R965</div><h4>Main965 — default effect CPU update integration</h4>
-      <p class="dim">自动更新：轮次 965，提交 1017。</p></div>
-    <div class="ev"><div class="d">2026-10-27 · R934–939</div><h4>Motion / NIS / Vehicle 资源与生命周期</h4>
-      <p class="dim">A11 战斗目的地、Motion 包直载与 Sprint 图、PropLogic、剩余 11 类 Motion 属性、NIS/Vehicle FIG 资源（22 host/22 内存 + 双 NVK）。</p></div>
-    <div class="ev"><div class="d">auto · R945</div><h4>945 — SHAD帧控制器接入默认包加载</h4>
-      <p class="dim">SAC01 帧控制器接入默认包加载；12 host/12 内存/113 原版案例 + 双 NVK。GPU 粒子缺口已核实并开始接通。</p></div>
-    <div class="ev"><div class="d">auto · R933</div><h4>933 — T06B目标位置预留与士兵预算接入</h4>
-      <p class="dim">自动更新：轮次 933，提交 985。</p></div>
-    <div class="ev"><div class="d">2026-10-27 · R929</div><h4>T05 位置预留</h4>
-      <p class="dim">reservePosition 节点与真实占位生命周期接入，AI 巡逻/目的地条件链补齐。</p></div>
-    <div class="ev"><div class="d">2026-10-27 · R926–928</div><h4>A07/A08/A09 主审接入</h4>
-      <p class="dim">巡逻/目的地条件、瞄准动作与条件、目的地动作三包连续验收，AI 行为链 A01–A09 成型。</p></div>
-    <div class="ev"><div class="d">2026-10-27 · R925</div><h4>真实效果资源与帧生产者</h4>
-      <p class="dim">Effect Archetype 与帧生产者接线，效果创建/渲染共享同一路径。</p></div>
-    <div class="ev"><div class="d">2026-10-27 · R924</div><h4>PadRumbleSet 落地轨</h4>
-      <p class="dim">墙跑动作链越过落地（Motion 5041/5045）；默认 GameInit/玩家/相机激活接线继续替换启动 fixture。</p></div>
-    <div class="ev"><div class="d">2026-10-27 · R922</div><h4>移动策略接通</h4>
-      <p class="dim">locomotion policy 接入，为默认玩家的移动/墙跑切换铺路。</p></div>
-    <div class="ev"><div class="d">2026-10-27 · R917</div><h4>Effect 缩放接线</h4>
-      <p class="dim">缩放接入现有创建与渲染队列，走同一 archetype/请求/句柄路径，不另建队列。</p></div>
-    <div class="ev"><div class="d">2026-10-27 · R915</div><h4>HitEffect 粒子冷资源</h4>
-      <p class="dim">主代理完成 384 字节 EffectTrack 独立资源解码，粒子冷资源接管。</p></div>
-    <div class="ev"><div class="d">2026-10-27 · R911</div><h4>Effect 记录接受真实待消费 CREATE</h4>
-      <p class="dim">原版 107da040 保留代数句柄排入 CREATE、1080d840 创建记录的顺序已对齐；待创建记录仅在同 FIFO 已有 CREATE 时准入，队列满/失败保留队首。</p></div>
-    <div class="ev"><div class="d">2026-10-26 · R910</div><h4>位置音效验收</h4>
-      <p class="dim">HPA01 八文件直接采用；213 原版 + 8 构造、442 执行、9 组位置对照，12 host/12 内存/双 NVK；SoundTrack/Decal 音效已绑。</p></div>
-    <div class="ev"><div class="d">2026-10-26 · R904</div><h4>HFC02 共享条件验收</h4>
-      <p class="dim">maybe/health/grabbableClass 接入 HitEffect；Gemini 8 文件直接采用，Main 修正外线程 fresh-init 先写状态。</p></div>
-    <div class="ev"><div class="d">2026-10-26 · R903</div><h4>DecalTrack 与 HDC01</h4>
-      <p class="dim">86 原版 + 12 构造 Track、540 执行、196 贴花请求/116 音效调用一致；Kimi 几何文件直接采用。</p></div>
-    <div class="ev"><div class="d">2026-10-26 · R902</div><h4>A05 AI 状态桥</h4>
-      <p class="dim">inFormation/inAlertMode 与 120 情绪动作接回；10 host/10 内存/双 NVK。</p></div>
-    <div class="ev"><div class="d">2026-10-26 · R900</div><h4>A04 目标条件验收</h4>
-      <p class="dim">132 authored、1225 求值、1152 组与原版重跑一致；9 host/9 内存 + 双 NVK。A05 已续派 AI 状态/队形缺口。</p></div>
-    <div class="ev"><div class="d">2026-10-26 · R899</div><h4>HitEffect 生产与资源接线</h4>
-      <p class="dim">真实射线/WorldDamage → 统一 Context → 64 序列池 → 已安装 hiteffects bank；38 组原版对照、16 host/16 内存。</p></div>
-    <div class="ev"><div class="d">2026-10-26 · R898</div><h4>M03 收集物生成验收</h4>
-      <p class="dim">真实收集物枚举、双参数 Lua、任务 initialTracks 与 GO 准入接通；7 host/7 内存 + 双 NVK。</p></div>
-    <div class="ev"><div class="d">2026-10-26 · R882/883</div><h4>timerSet 与碰撞面速度夹角</h4>
-      <p class="dim">timerSet 接通，真实奔跑沿墙上升验证；碰撞面速度夹角通过原版对照。</p></div>
+    <div class="tl">
+    <div class="ev"><div class="d">2026-10-31 · R1036–1078</div><h4>InGame 进入 / 世界服务 / 行人·NPC</h4>
+      <p class="dim">New Game 越过玩家创建包并进入 InGame；世界服务、环境、引擎时间驱动、车辆灯光、World AI/NPC 群体、可见性查询（NVI）、水体、AI Lua 命令与脚本来源处理陆续接入。</p></div>
+    <div class="ev"><div class="d">2026-10-30 · R995–1035</div><h4>行人链 / 目标选择 / 效果调度</h4>
+      <p class="dim">行人模板与行为第 1–8 批、行人工厂/参数、ActorConfig ATEM、目标选择两批、EffectTrack 参数与默认启动链、旧式 0x11000 shader、RGBA32F 纹理、道具 Playback 整包装载。</p></div>
+    <div class="ev"><div class="d">2026-10-30 · R966–994</div><h4>默认包 / 车辆 / 场景资源</h4>
+      <p class="dim">车辆音频与 ATEM、Playback、Scenario、GameObject 灯光、WorldBoundary/Heli、WorldTriggers、NIS、IntersectionSpawner、AmbientNavMesh、Location 天空、APF03/APF04、TunnelVolume、Heightmap、NPC 实例池与类型。</p></div>
+    <div class="ev"><div class="d">2026-10-29 · R934–965</div><h4>Motion / NIS / Vehicle / 效果</h4>
+      <p class="dim">A11 战斗目的地、Motion 包直载、PropLogic、NIS/Vehicle FIG、效果距离与淡出、到期事务、物理形状射线、EffectManager CPU 池调度。</p></div>
+    <div class="ev"><div class="d">2026-10-27 · R900–933</div><h4>GM02 战斗零件 / 贴花 / 音效</h4>
+      <p class="dim">HitEffect 生产与资源、贴花裁剪与渲染、位置音效、AI A01–A09、T01–T06B、M02–M05、SVE01 存档基础。</p></div>
+    <div class="ev"><div class="d">2026-10-26 · R878–899</div><h4>墙跑落地 / 粒子 / 相机</h4>
+      <p class="dim">WallSlide、墙跳、脱墙落地、PadRumbleSet、CameraShake、GPU 粒子实际调用与完成反馈。</p></div>
   </div>
 </section>
 

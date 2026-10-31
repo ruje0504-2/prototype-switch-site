@@ -164,7 +164,7 @@
 
     <div class="cta">
       <a class="btn primary" href="#install">Download &amp; Install <small>NRO</small></a>
-      <a class="btn" href="#log">Changelog <small>R850</small></a>
+      <a class="btn" href="#log">Changelog <small>R1078</small></a>
       <a class="btn" href="#status">Progress <small>~78%</small></a>
     </div>
     <p class="fine" style="margin-top:14px">Not released yet — stay tuned</p>
@@ -256,65 +256,19 @@
 
 <section class="wrap pad" id="log">
   <h2 class="h2"><span class="n">05</span> Recent updates</h2>
-  <div class="tl">
-    <div class="ev"><div class="d">auto · R1035</div><h4>1035 — 共享特效未创建时的序章行为与后续包定位</h4>
-      <p class="dim">Auto-updated: round 1035, commits 1087.</p></div>
-    <div class="ev"><div class="d">2026-10-30 · R995–1021</div><h4>Pedestrian chain / target selection / LOD</h4>
-      <p class="dim">Alex expression mapping, pedestrian template cold load and behaviour stages 1–7, pedestrian factories/tunables, ActorConfig ATEM, target-selection parent logic (two batches), LRB LOD rendering (three batches); NPC instances and pedestrian behaviour chain take shape.</p></div>
-    <div class="ev"><div class="d">auto · R1021</div><h4>Main1021 — 真实记录控制器与包动画绑定</h4>
-      <p class="dim">Auto-updated: round 1021, commits 1073.</p></div>
-    <div class="ev"><div class="d">2026-10-29 · R985–994</div><h4>NPC instance chain / Alex animation / NIS packages</h4>
-      <p class="dim">Alex animation and expression packages, NIS package lifecycle, Playback consumers, NPCAnimation and shared Puppet, Scenario/ObjectStateChanged, Alert faction and tracks, NPC instance pool with unified pose queue, NPC types and ShaderPalette consumers (16 host/16 ASan + dual NVK).</p></div>
-    <div class="ev"><div class="d">auto · R994</div><h4>第994轮：NPC类型、内嵌实例与ShaderPalette接入</h4>
-      <p class="dim">Auto-updated: round 994, commits 1046.</p></div>
-    <div class="ev"><div class="d">auto · R986</div><h4>Main986 — NIS包生命周期与默认服务接线</h4>
-      <p class="dim">Auto-updated: round 986, commits 1046.</p></div>
-    <div class="ev"><div class="d">2026-10-28 · R966–984</div><h4>Default packages / vehicles / scene resources</h4>
-      <p class="dim">Vehicle audio and ATEM, Playback actions and factory, TOD and Scenario properties/state, GameObject lights, WorldBoundary/Heli, WorldTriggers, NIS locators, IntersectionSpawner, AmbientNavMesh, Location sky/far scene, APF03/APF04 audio, TunnelVolume, CameraFloor, Heightmap Manhattan, package-complete messages and StateChange.</p></div>
-    <div class="ev"><div class="d">auto · R984</div><h4>Main984 — 包完成消息与 StateChange</h4>
-      <p class="dim">Auto-updated: round 984, commits 1036.</p></div>
-    <div class="ev"><div class="d">2026-10-28 · R958–965</div><h4>Effect scheduling / vehicle resources / particle updates</h4>
-      <p class="dim">Effect distance and fade, expiry and sub-effect stop transactions, four owned physics shape raycasts, vehicle ATEM metadata, manual particle transform and bounds, EffectManager CPU pool scheduling, particle completion ordering and default effect CPU update integration.</p></div>
-    <div class="ev"><div class="d">auto · R965</div><h4>Main965 — default effect CPU update integration</h4>
-      <p class="dim">Auto-updated: round 965, commits 1017.</p></div>
-    <div class="ev"><div class="d">2026-10-27 · R934–939</div><h4>Motion / NIS / Vehicle resources and lifecycles</h4>
-      <p class="dim">A11 combat destination, Motion package direct load and Sprint graph, PropLogic, remaining 11 Motion property classes, NIS/Vehicle FIG resources (22 host/22 memory + dual NVK).</p></div>
-    <div class="ev"><div class="d">auto · R945</div><h4>945 — SHAD帧控制器接入默认包加载</h4>
-      <p class="dim">SAC01 frame controller wired into default package loading; 12 host/12 memory/113 original cases + dual NVK. GPU particle gap verified and being wired.</p></div>
-    <div class="ev"><div class="d">auto · R933</div><h4>933 — T06B目标位置预留与士兵预算接入</h4>
-      <p class="dim">Auto-updated: round 933, commits 985.</p></div>
-    <div class="ev"><div class="d">2026-10-27 · R929</div><h4>T05 position reservation</h4>
-      <p class="dim">reservePosition node and real reservation lifecycle wired; AI patrol/destination condition chain completed.</p></div>
-    <div class="ev"><div class="d">2026-10-27 · R926–928</div><h4>A07/A08/A09 reviewed and integrated</h4>
-      <p class="dim">Patrol/destination conditions, aim actions/conditions and destination actions accepted back-to-back; AI chain A01–A09 takes shape.</p></div>
-    <div class="ev"><div class="d">2026-10-27 · R925</div><h4>Real effect resources and frame producers</h4>
-      <p class="dim">Effect archetypes and frame producers wired; effect creation/rendering share one path.</p></div>
-    <div class="ev"><div class="d">2026-10-27 · R924</div><h4>PadRumbleSet landing track</h4>
-      <p class="dim">Wall-run chain passed landing (Motion 5041/5045); default GameInit/player/camera activation keeps replacing the startup fixture.</p></div>
-    <div class="ev"><div class="d">2026-10-27 · R922</div><h4>Locomotion policy</h4>
-      <p class="dim">Locomotion policy wired, paving the way for default-player movement/wall-run switching.</p></div>
-    <div class="ev"><div class="d">2026-10-27 · R917</div><h4>Effect scaling wired</h4>
-      <p class="dim">Scaling goes through the existing create/render queue and archetype/request/handle path; no separate queue.</p></div>
-    <div class="ev"><div class="d">2026-10-27 · R915</div><h4>HitEffect particle cold resources</h4>
-      <p class="dim">Main completed independent 384-byte EffectTrack resource decode; particle cold-resource takeover.</p></div>
-    <div class="ev"><div class="d">2026-10-27 · R911</div><h4>Effect records accept real pending CREATE</h4>
-      <p class="dim">Original 107da040 handle/generation + 1080d840 record creation order aligned; pending records only admitted when the same FIFO already has CREATE; queue-full/failure keeps head.</p></div>
-    <div class="ev"><div class="d">2026-10-26 · R910</div><h4>Positional audio accepted</h4>
-      <p class="dim">HPA01's 8 files adopted; 213 original + 8 constructed, 442 executions, 9 position comparisons, 12 host/12 memory + dual NVK; SoundTrack/Decal sounds bound.</p></div>
-    <div class="ev"><div class="d">2026-10-26 · R904</div><h4>HFC02 shared conditions accepted</h4>
-      <p class="dim">maybe/health/grabbableClass wired into HitEffect; Gemini's 8 files adopted, Main fixed foreign-thread fresh-init state write.</p></div>
-    <div class="ev"><div class="d">2026-10-26 · R903</div><h4>DecalTrack and HDC01</h4>
-      <p class="dim">86 original + 12 constructed tracks, 540 executions, 196 decal requests / 116 sound calls consistent; Kimi geometry files adopted.</p></div>
-    <div class="ev"><div class="d">2026-10-26 · R902</div><h4>A05 AI state bridge</h4>
-      <p class="dim">inFormation/inAlertMode and 120 emotion actions restored; 10 host/10 memory + dual NVK.</p></div>
-    <div class="ev"><div class="d">2026-10-26 · R900</div><h4>GM02-A04 target conditions accepted</h4>
-      <p class="dim">132 authored, 1225 evaluations, 1152 groups matching the original replay; 9 host/9 memory + dual NVK. A05 (AI state/formation) dispatched.</p></div>
-    <div class="ev"><div class="d">2026-10-26 · R899</div><h4>HitEffect production and resource wiring</h4>
-      <p class="dim">Real raycast/WorldDamage → unified Context → 64-sequence pool → installed hiteffects bank; 38 original comparisons, 16 host/16 memory.</p></div>
-    <div class="ev"><div class="d">2026-10-26 · R898</div><h4>GM02-M03 collectible spawn accepted</h4>
-      <p class="dim">Real collectible enumeration, two-parameter Lua, mission initialTracks and GO admission wired; 7 host/7 memory + dual NVK.</p></div>
-    <div class="ev"><div class="d">2026-10-26 · R882/883</div><h4>timerSet and collision-surface velocity angle</h4>
-      <p class="dim">timerSet wired and real sprint-up-wall verified; collision-surface velocity angle matched against the original.</p></div>
+    <div class="tl">
+    <div class="ev"><div class="d">2026-10-31 · R1036–1078</div><h4>InGame entry / world services / peds and NPCs</h4>
+      <p class="dim">New Game passes the player-creation package into InGame; world services, environment, engine time drivers, vehicle lights, World AI/NPC population, NVI visibility queries, water, AI Lua commands and script-source handling land in sequence.</p></div>
+    <div class="ev"><div class="d">2026-10-30 · R995–1035</div><h4>Pedestrian chain / target selection / effect scheduling</h4>
+      <p class="dim">Pedestrian templates and behaviour stages 1–8, factories/tunables, ActorConfig ATEM, two target-selection batches, EffectTrack parameters and default start chain, legacy 0x11000 shader, RGBA32F textures, prop Playback load.</p></div>
+    <div class="ev"><div class="d">2026-10-30 · R966–994</div><h4>Default packages / vehicles / scene resources</h4>
+      <p class="dim">Vehicle audio and ATEM, Playback, Scenario, GameObject lights, WorldBoundary/Heli, WorldTriggers, NIS, IntersectionSpawner, AmbientNavMesh, Location sky, APF03/APF04, TunnelVolume, Heightmap, NPC instance pool and types.</p></div>
+    <div class="ev"><div class="d">2026-10-29 · R934–965</div><h4>Motion / NIS / Vehicle / effects</h4>
+      <p class="dim">A11 combat destination, Motion direct load, PropLogic, NIS/Vehicle FIG, effect distance and fade, expiry transactions, physics shape raycasts, EffectManager CPU pool scheduling.</p></div>
+    <div class="ev"><div class="d">2026-10-27 · R900–933</div><h4>GM02 combat pieces / decals / audio</h4>
+      <p class="dim">HitEffect production and resources, decal clipping and rendering, positional audio, AI A01–A09, T01–T06B, M02–M05, SVE01 save base.</p></div>
+    <div class="ev"><div class="d">2026-10-26 · R878–899</div><h4>Wall-run landing / particles / camera</h4>
+      <p class="dim">WallSlide, wall jump, detach and landing, PadRumbleSet, CameraShake, GPU particle actual calls and completion feedback.</p></div>
   </div>
 </section>
 
