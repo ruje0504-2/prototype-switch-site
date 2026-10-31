@@ -206,9 +206,9 @@
       <tr><td>渲染 / 资源 / 世界</td><td><span class="tag t-done">已接通</span></td><td>多 pass、材质、流送、城区资源；NVI 可见性、水体、Location 天空已接</td></tr>
       <tr><td>物理 / 碰撞 / 布娃娃</td><td><span class="tag t-done">已接通</span></td><td>Hit 近邻、支撑/IK、Air 相机、物理形状射线</td></tr>
       <tr><td>音频 / 对白</td><td><span class="tag t-act">进行中</span></td><td>位置音效 / AudioZone / 车辆 Patch 已接；原版 DSP 与默认对话调度剩余</td></tr>
-      <tr><td>前端 / HUD / 影片</td><td><span class="tag t-done">已接通</span></td><td>158 段硬解、中文补丁、Extras 入口；Logo 方向/edgeAA 等剩余</td></tr>
+      <tr><td>前端 / HUD / 影片</td><td><span class="tag t-done">已接通</span></td><td>158 段硬解、中文补丁、Extras 入口；HUD 19 槽组件已接</td></tr>
       <tr><td>GPU 粒子</td><td><span class="tag t-act">收尾</span></td><td>默认实际调用 + 完成反馈 + CPU 更新已接；EUP 预算/fade 待接</td></tr>
-      <tr><td>真实玩家闭环</td><td><span class="tag t-act">进行中</span></td><td>玩家包 READY + e01m01_alex 玩家创建批 + InGame 进入；默认操控/相机待接</td></tr>
+      <tr><td>真实玩家闭环</td><td><span class="tag t-act">进行中</span></td><td>玩家包 READY + e01m01_alex 创建批 + InGame 进入；世界服务与单一帧在接</td></tr>
       <tr><td>任务 / 战斗</td><td><span class="tag t-act">进行中</span></td><td>GM02 A01–A13、T01–T06B、Ped 行为、NPC 实例池、目标选择已接；伤害结算/死亡重试/任务推进待接</td></tr>
       <tr><td>存档 / Extras 效果</td><td><span class="tag t-act">进行中</span></td><td>SVE01 基础已接；完整载入/NewGameFromExistingSlot/删除 UI 待接</td></tr>
     </tbody>
@@ -255,6 +255,8 @@
 <section class="wrap pad" id="log">
   <h2 class="h2"><span class="n">05</span> 最近更新</h2>
     <div class="tl">
+    <div class="ev"><div class="d">2026-10-31 · R1079–1084</div><h4>InGame 世界服务 / HUD 19 槽</h4>
+      <p class="dim">WebNodeLocator、Cell 游戏对象子库存、单个 Geometry 跨页装载、COV01 遮挡体解码与发布/退休、HUD 19 组件与同一影片会话、Lua 重置与按槽清退。</p></div>
     <div class="ev"><div class="d">2026-10-31 · R1036–1078</div><h4>InGame 进入 / 世界服务 / 行人·NPC</h4>
       <p class="dim">New Game 越过玩家创建包并进入 InGame；世界服务、环境、引擎时间驱动、车辆灯光、World AI/NPC 群体、可见性查询（NVI）、水体、AI Lua 命令与脚本来源处理陆续接入。</p></div>
     <div class="ev"><div class="d">2026-10-30 · R995–1035</div><h4>行人链 / 目标选择 / 效果调度</h4>
