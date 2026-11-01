@@ -207,10 +207,10 @@
     <tbody>
       <tr><td>Renderer / resources / world</td><td><span class="tag t-done">In place</span></td><td>Multi-pass, materials, streaming, city zones; NVI visibility, water and Location sky wired</td></tr>
       <tr><td>Physics / collision / ragdoll</td><td><span class="tag t-done">In place</span></td><td>Hit neighbour queries, support/IK, Air camera, physics shape raycasts</td></tr>
-      <tr><td>Audio / dialogue</td><td><span class="tag t-act">In progress</span></td><td>Positional audio / AudioZone / vehicle patches wired; original DSP and default dialogue scheduling remain</td></tr>
+      <tr><td>Audio / dialogue</td><td><span class="tag t-act">In progress</span></td><td>AMB01 ambient/mission audio streaming wired; positional audio, AudioZone and vehicle patches in place; original DSP and default dialogue scheduling remain</td></tr>
       <tr><td>Frontend / HUD / movies</td><td><span class="tag t-done">In place</span></td><td>158 hardware-decoded movies, Chinese patch, Extras entry; 19-slot HUD components wired</td></tr>
       <tr><td>GPU particles</td><td><span class="tag t-act">Wrapping up</span></td><td>Default actual calls + completion feedback + CPU update wired; EUP budget/fade pending</td></tr>
-      <tr><td>Real player loop</td><td><span class="tag t-act">In progress</span></td><td>Player package READY + e01m01_alex player-creation batch + InGame entry; world services and the single frame in progress</td></tr>
+      <tr><td>Real player loop</td><td><span class="tag t-act">In progress</span></td><td>New Game loads 13 packages and initialises World (AI Lua/navigation/strategy/paths), 116 midground drawables, 451 primitives, real player and active camera; first frame in progress</td></tr>
       <tr><td>Missions / combat</td><td><span class="tag t-act">In progress</span></td><td>GM02 A01–A13, T01–T06B, Ped behaviour, NPC instance pool, target selection wired; damage resolution/death-retry/mission progression pending</td></tr>
       <tr><td>Save / Extras effects</td><td><span class="tag t-act">In progress</span></td><td>SVE01 base wired; full load / NewGameFromExistingSlot / delete UI pending</td></tr>
     </tbody>
@@ -257,6 +257,8 @@
 <section class="wrap pad" id="log">
   <h2 class="h2"><span class="n">05</span> Recent updates</h2>
     <div class="tl">
+    <div class="ev"><div class="d">2026-11-01 · R1085–1101</div><h4>New Game world init / audio streaming / first on-device run</h4>
+      <p class="dim">Cell_81 main file and streaming meshes, 116 midground drawables / 451 primitives, real player and active camera, World idle callbacks (physics/Puppet), all 13 packages, World AI Lua/navigation/strategy/path init; AMB01 ambient and mission audio streaming; the 1099 on-device build passed 720p colour prep on Tegra X1/NVK and stopped at 0x102a7010.</p></div>
     <div class="ev"><div class="d">2026-10-31 · R1079–1084</div><h4>InGame world services / 19-slot HUD</h4>
       <p class="dim">WebNodeLocator, Cell game-object sub-inventory, single-Geometry cross-page load, COV01 occluder decode/publish/retire, 19-slot HUD components with shared movie session, Lua reset and per-slot teardown.</p></div>
     <div class="ev"><div class="d">2026-10-31 · R1036–1078</div><h4>InGame entry / world services / peds and NPCs</h4>
