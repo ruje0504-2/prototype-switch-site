@@ -88,7 +88,7 @@
 
   .panel{border:1px solid var(--line);border-radius:16px;padding:22px;background:rgba(236,231,221,.025)}
   .bar{height:9px;border-radius:999px;background:#211d27;overflow:hidden;margin:12px 0 8px}
-  .bar > i{display:block;height:100%;width:78%;border-radius:999px;
+  .bar > i{display:block;height:100%;width:82%;border-radius:999px;
     background:linear-gradient(90deg,var(--blood2),var(--blood) 55%,var(--vein))}
   .row{display:flex;justify-content:space-between;gap:14px;padding:10px 0;border-bottom:1px dashed rgba(236,231,221,.1);font-size:14px}
   .row:last-child{border-bottom:0}
@@ -98,7 +98,7 @@
   .t-act{background:rgba(200,16,46,.16);color:#ff6b78;border:1px solid rgba(200,16,46,.42)}
   .t-todo{background:rgba(147,136,122,.1);color:var(--ash);border:1px solid var(--line)}
 
-  table{width:78%;border-collapse:collapse;font-size:14px}
+  table{width:82%;border-collapse:collapse;font-size:14px}
   th,td{text-align:left;padding:11px 10px;border-bottom:1px solid var(--line);vertical-align:top}
   th{font:600 11px/1 var(--mono);letter-spacing:.16em;color:var(--ash);text-transform:uppercase}
   td.num{font-family:var(--mono);color:var(--bone)}
@@ -153,17 +153,17 @@
     </p>
 
     <div class="chips">
-      <span class="chip">轮次 <b>1212</b></span>
-      <span class="chip">提交 <b>1264</b></span>
-      <span class="chip">代码规模 <b>94.7 万行</b></span>
+      <span class="chip">轮次 <b>1214</b></span>
+      <span class="chip">提交 <b>1266</b></span>
+      <span class="chip">代码规模 <b>95.1 万行</b></span>
       <span class="chip">NRO <b>0 B</b></span>
       <span class="chip">后端 <b>mesa-switch NVK</b></span>
     </div>
 
     <div class="cta">
       <a class="btn primary" href="#install">下载与安装 <small>NRO</small></a>
-      <a class="btn" href="#log">更新日志 <small>R1212</small></a>
-      <a class="btn" href="#status">当前进度 <small>~78%</small></a>
+      <a class="btn" href="#log">更新日志 <small>R1214</small></a>
+      <a class="btn" href="#status">当前进度 <small>~82%</small></a>
     </div>
     <p class="fine" style="margin-top:14px">还未推出，敬请期待</p>
   </div>
@@ -193,10 +193,10 @@
   <p class="sub">按"可玩序章"验收口径统计：玩家能操控、任务能触发才算过关，底层子系统完成度不等于可玩度。</p>
 
   <div class="panel">
-    <div class="row"><span>可玩序章（验收口径）</span><span class="v">~78%</span></div>
+    <div class="row"><span>可玩序章（验收口径）</span><span class="v">~82%</span></div>
     <div class="bar"><i></i></div>
     <div class="row"><span>已发布版本</span><span class="v">c33d4f47 · origin/main</span></div>
-    <div class="row"><span>本地最新</span><span class="v">1212 · 7d8b7e4a</span></div>
+    <div class="row"><span>本地最新</span><span class="v">1214 · 73defd58</span></div>
     <div class="row"><span>实机帧率（New Game 场景）</span><span class="v">默频 46–49 FPS</span></div>
   </div>
 
@@ -256,7 +256,7 @@
   <h2 class="h2"><span class="n">05</span> 最近更新</h2>
     <div class="tl">
   <!--AUTO-LATEST-->
-    <div class="ev"><div class="d">2026-11-04 · 最新</div><h4>R1212 进展</h4><p class="dim">1212：直接采用16个新文件和共享factory/Meta/Action接线，补正原版反射启用、工厂准入及测试清退/路由；7主机、7ASan/UBSan、76状态与26叶/349事件/86阶段回放、双NVK通过。实际Squad互通与Archive失败前缀另有原生验证。正常入口仍frame32运输车4类/6引</p><p class="dim">1211：CFD01主审接入并完成210行/140质量原版、10主机/9内存（含预检接线）与双NVK；运输车预检6类/7引用缩至4类/6引用，完整包无新增。VPC01/TGB01实际新Kimi highspeed/max/auto在途，Main继续VehicleAmbient及共享资源/帧。 入口两端仍fra</p><p class="dim">1210：七文件候选及共享接线直接采用，修正失败前Motion清退、关闭标志误挡FIG退休，并持有查询实际FIG。主机7项、ASan/UBSan6项、34组PE/原生、双NVK ELF通过；正常英文NewGame两端均到frame32，heli_gunship_marine_core 5/5 Loaded(5</p><p class="dim">1209：已实现Consumable的stage64骨骼缩放及4项手动缩放表，17组/35帧原版对照、主机2项、ASan/UBSan1项、NVK配置A57静态库构建通过。完整行为/默认工厂未接入，完整包无新增。已确认另需原版type12 ConstraintFixDistance，由CFD01独立实现；IAB</p></div>
+    <div class="ev"><div class="d">2026-11-04 · 最新</div><h4>R1214 进展</h4><p class="dim">1214：直接采用六文件及共享接线，修正Tunnel持有、分配/清退回调、计数边界、类准入与API重名；7主机/7ASan、17条保留原版、真实117字节组件/908节点Motion/两JumpTo安装重装及双NVK通过。正常入口仍frame32运输车3类/3引用，无新增整包，默认Runtime服务未绑定。证</p><p class="dim">1213：Main采用七文件并修正分配回调重入/真实GO持有/线程边界，接默认Runtime、帧错误计数及逆序清退；嵌套PhysicsLOD与Grabbable属性引用接实际库存。5主机/5ASan/UBSan、10条保留原版回放、2个新增描述符原版、双NVK通过。正常入口运输车缺口降至3类/3引用，仍fra</p><p class="dim">1212：直接采用16个新文件和共享factory/Meta/Action接线，补正原版反射启用、工厂准入及测试清退/路由；7主机、7ASan/UBSan、76状态与26叶/349事件/86阶段回放、双NVK通过。实际Squad互通与Archive失败前缀另有原生验证。正常入口仍frame32运输车4类/6引</p><p class="dim">1211：CFD01主审接入并完成210行/140质量原版、10主机/9内存（含预检接线）与双NVK；运输车预检6类/7引用缩至4类/6引用，完整包无新增。VPC01/TGB01实际新Kimi highspeed/max/auto在途，Main继续VehicleAmbient及共享资源/帧。 入口两端仍fra</p></div>
   <!--/AUTO-LATEST-->
     <div class="ev"><div class="d">2026-11-02 · R1125–1130</div><h4>ExceptionFE / PUI 页面 / CKL 检查点 / 脚本帧</h4>
       <p class="dim">Exception 页面六函数与 GFX/文本/纹理、13 页 PUI 资源与 281 action、CKL 全局捕获/恢复与 CPG 持有、真实 Lua 延迟队列与检查点、脚本帧（暂停门/栈清理/GC）；默认任务仍 10825200/ready0/GameInit0。</p></div>
@@ -321,7 +321,7 @@
     <div class="flex">
       <div>
         <div><b style="color:var(--bone)">PROTOTYPE / SWITCH</b> · Native Horizon reimplementation</div>
-        <div class="fine">更新于 2026-11-04 · 轮次 1212 · 交付 2f246c98f246c98f246c98</div>
+        <div class="fine">更新于 2026-11-04 · 轮次 1214 · 交付 2f246c98f246c98f246c98f246c98</div>
         <div class="fine">源码可能发布 · 若转 NVN 则无法公开 · 目前仅发布 NRO</div>
       </div>
       <div>
