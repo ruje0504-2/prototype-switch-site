@@ -155,9 +155,9 @@
     </p>
 
     <div class="chips">
-      <span class="chip">Round <b>1298</b></span>
-      <span class="chip">Commits <b>1350</b></span>
-      <span class="chip">Code size <b>1061k lines</b></span>
+      <span class="chip">Round <b>1318</b></span>
+      <span class="chip">Commits <b>1370</b></span>
+      <span class="chip">Code size <b>1081k lines</b></span>
       <span class="chip">NRO <b>0 B</b></span>
       <span class="chip">Backend <b>mesa-switch NVK</b></span>
     </div>
@@ -198,7 +198,7 @@
     <div class="row"><span>Playable prologue (acceptance bar)</span><span class="v">~82%</span></div>
     <div class="bar"><i></i></div>
     <div class="row"><span>Published release</span><span class="v">c33d4f47 · origin/main</span></div>
-    <div class="row"><span>Latest local</span><span class="v">1298 · 288edcb2</span></div>
+    <div class="row"><span>Latest local</span><span class="v">1318 · ee9fb0a9</span></div>
     <div class="row"><span>Device FPS (New Game scene)</span><span class="v">46–49 FPS @ stock clocks</span></div>
   </div>
 
@@ -258,7 +258,7 @@
   <h2 class="h2"><span class="n">05</span> Recent updates</h2>
     <div class="tl">
   <!--AUTO-LATEST-->
-    <div class="ev"><div class="d">2026-11-06 · latest</div><h4>Round 1295 progress</h4><p class="dim">1295: 坦克求解器加载/约束/威胁支持域已主审接入，高级受击反应已恢复。正常英文 New Game 主机与内存均113帧，首错推进到坦克第29/42项 VehicleBehaviourAICharacter，偏移4524。345组求解器数值及135条受击/8条计数对照、主机/ASan/UBSan和A57/N</p><p class="dim">1296: 车辆AI角色支持域已接入默认工厂，真实New Game主机120帧/内存140帧越过第29项，首错到TankMovementBehaviour第33/42项（偏移4714）。坦克驾驶辅助168组、新受力/接触/指向核函数123组及车辆AI 201脚本/64414记录原版对照通过；两端各8项和A57/</p><p class="dim">1297: 坦克地面规划的两个共用依赖已完成：真实非Ped GO局部路径客户端，以及不冒充地面投影的导航粗路径出口。主机/内存两端局部路径各2模式、7组新增生命周期验证，复用26条原版；道路查询/调度各4目标及20/8组原版回放、A57/NVK通过。正常入口沿用1296第33/42项TankMovement卡点</p><p class="dim">1298: 普通目标GroundPlanner已接真实粗路径调度和非Ped局部求解器；修正重置误取消与前视点导致提前到达。172组游标、50条流程、27条局部完成边界原版对照及ASan回放、主机/内存生命周期和A57/NVK通过。TankMovement默认工厂未接，入口仍复用1296第33/42项，完整序章包</p></div>
+    <div class="ev"><div class="d">2026-11-07 · latest</div><h4>Round 1315 progress</h4><p class="dim">1315: TCP01自然接触已主审接入默认世界，补齐Enter/ExitTrigger排队与Lua导出；屋顶行为及真实导航/物理工厂通过。主机134帧/内存153帧仍停Blackwatch WalkingBehaviour，清退归零；13项受影响目标、原版对照及A57/NVK通过，完整序章包新增0。WAK01</p><p class="dim">1316: Main完成并接入WAK01士兵Walking、共享GroundPlanner/64项避障和真实CharacterIntention；统一38/10巡逻数据接口，修复存档活句柄验证与退出顺序。主机128帧/内存139帧越过Blackwatch工厂，现停e01m01 node584缺失sc_Clear</p><p class="dim">1317: Main将已验收SCA01接入默认场景：三剧情相机注册、真实控制器请求/仲裁、单一动画时钟与清退闭合。正常New Game两端越过sc_Clear，当前首错为military node806的inReservedArea（由node381 SpawnTrack报告）；相机请求已提交，尚未到后半帧消费</p><p class="dim">1318: Main恢复4类AI空间条件、SpawnTask及剧情相机生成标志；修复广告牌混用Chase激活身份。正常New Game主机143帧/内存155帧已实际推进并呈现ScriptCamA约14个动画帧，当前停在物理等待期间的HUD更新1084c040，退出归零。17项受影响目标各平台、320条查询/3</p></div>
   <!--/AUTO-LATEST-->
     <div class="ev"><div class="d">2026-11-02 · R1125–1130</div><h4>ExceptionFE / PUI pages / CKL checkpoints / script frames</h4>
       <p class="dim">Exception page six functions with GFX/text/textures, 13 PUI pages and 281 actions, CKL global capture/restore with CPG holds, real Lua delay queue and checkpoints, script frames (pause gate/stack cleanup/GC); default mission still 10825200/ready0/GameInit0.</p></div>
@@ -323,7 +323,7 @@
     <div class="flex">
       <div>
         <div><b style="color:var(--bone)">PROTOTYPE / SWITCH</b> · Native Horizon reimplementation</div>
-        <div class="fine">Updated 2026-11-06 · Round 1298 · Delivery 7f221983eb2454ee12d0bf65ebf65ebf65ebf65ede2a62f246c98f246c98f246c98f246c98</div>
+        <div class="fine">Updated 2026-11-07 · Round 1318 · Delivery 6e4b7b79f221983eb2454ee12d0bf65ebf65ebf65ebf65ede2a62f246c98f246c98f246c98f246c98</div>
         <div class="fine">Source may be released · blocked if the project moves to NVN · NRO only for now</div>
       </div>
       <div>
