@@ -89,7 +89,7 @@
 
   .panel{border:1px solid var(--line);border-radius:16px;padding:22px;background:rgba(236,231,221,.025)}
   .bar{height:9px;border-radius:999px;background:#211d27;overflow:hidden;margin:12px 0 8px}
-  .bar > i{display:block;height:100%;width:82%;border-radius:999px;
+  .bar > i{display:block;height:100%;width:87%;border-radius:999px;
     background:linear-gradient(90deg,var(--blood2),var(--blood) 55%,var(--vein))}
   .row{display:flex;justify-content:space-between;gap:14px;padding:10px 0;border-bottom:1px dashed rgba(236,231,221,.1);font-size:14px}
   .row:last-child{border-bottom:0}
@@ -99,7 +99,7 @@
   .t-act{background:rgba(200,16,46,.16);color:#ff6b78;border:1px solid rgba(200,16,46,.42)}
   .t-todo{background:rgba(147,136,122,.1);color:var(--ash);border:1px solid var(--line)}
 
-  table{width:82%;border-collapse:collapse;font-size:14px}
+  table{width:87%;border-collapse:collapse;font-size:14px}
   th,td{text-align:left;padding:11px 10px;border-bottom:1px solid var(--line);vertical-align:top}
   th{font:600 11px/1 var(--mono);letter-spacing:.16em;color:var(--ash);text-transform:uppercase}
   td.num{font-family:var(--mono);color:var(--bone)}
@@ -155,9 +155,9 @@
     </p>
 
     <div class="chips">
-      <span class="chip">Round <b>1318</b></span>
-      <span class="chip">Commits <b>1370</b></span>
-      <span class="chip">Code size <b>1081k lines</b></span>
+      <span class="chip">Round <b>1331</b></span>
+      <span class="chip">Commits <b>1383</b></span>
+      <span class="chip">Code size <b>1086k lines</b></span>
       <span class="chip">NRO <b>0 B</b></span>
       <span class="chip">Backend <b>mesa-switch NVK</b></span>
     </div>
@@ -165,7 +165,7 @@
     <div class="cta">
       <a class="btn primary" href="#install">Download &amp; Install <small>NRO</small></a>
       <a class="btn" href="#log">Changelog <small>R1078</small></a>
-      <a class="btn" href="#status">Progress <small>~82%</small></a>
+      <a class="btn" href="#status">Progress <small>~87%</small></a>
     </div>
     <p class="fine" style="margin-top:14px">Not released yet — stay tuned</p>
   </div>
@@ -195,10 +195,10 @@
   <p class="sub">Measured against the playable-prologue bar: the player must be controllable and missions must trigger. Subsystem completeness is not playability.</p>
 
   <div class="panel">
-    <div class="row"><span>Playable prologue (acceptance bar)</span><span class="v">~82%</span></div>
+    <div class="row"><span>Playable prologue (acceptance bar)</span><span class="v">~87%</span></div>
     <div class="bar"><i></i></div>
     <div class="row"><span>Published release</span><span class="v">c33d4f47 · origin/main</span></div>
-    <div class="row"><span>Latest local</span><span class="v">1318 · ee9fb0a9</span></div>
+    <div class="row"><span>Latest local</span><span class="v">1331 · 430a835f</span></div>
     <div class="row"><span>Device FPS (New Game scene)</span><span class="v">46–49 FPS @ stock clocks</span></div>
   </div>
 
@@ -257,8 +257,10 @@
 <section class="wrap pad" id="log">
   <h2 class="h2"><span class="n">05</span> Recent updates</h2>
     <div class="tl">
+    <div class="ev"><div class="d">2026-11-07 · prologue load</div><h4>Host prologue reaches frame 261</h4>
+      <p class="dim">Default entry advances from frame 113 to 261; tank components at 33/42, airstrike trails, object retire queue and ModelScene dual materials being wired. Simulation step still not non-zero.</p></div>
   <!--AUTO-LATEST-->
-    <div class="ev"><div class="d">2026-11-07 · latest</div><h4>Round 1315 progress</h4><p class="dim">1315: TCP01自然接触已主审接入默认世界，补齐Enter/ExitTrigger排队与Lua导出；屋顶行为及真实导航/物理工厂通过。主机134帧/内存153帧仍停Blackwatch WalkingBehaviour，清退归零；13项受影响目标、原版对照及A57/NVK通过，完整序章包新增0。WAK01</p><p class="dim">1316: Main完成并接入WAK01士兵Walking、共享GroundPlanner/64项避障和真实CharacterIntention；统一38/10巡逻数据接口，修复存档活句柄验证与退出顺序。主机128帧/内存139帧越过Blackwatch工厂，现停e01m01 node584缺失sc_Clear</p><p class="dim">1317: Main将已验收SCA01接入默认场景：三剧情相机注册、真实控制器请求/仲裁、单一动画时钟与清退闭合。正常New Game两端越过sc_Clear，当前首错为military node806的inReservedArea（由node381 SpawnTrack报告）；相机请求已提交，尚未到后半帧消费</p><p class="dim">1318: Main恢复4类AI空间条件、SpawnTask及剧情相机生成标志；修复广告牌混用Chase激活身份。正常New Game主机143帧/内存155帧已实际推进并呈现ScriptCamA约14个动画帧，当前停在物理等待期间的HUD更新1084c040，退出归零。17项受影响目标各平台、320条查询/3</p></div>
+    <div class="ev"><div class="d">2026-11-07 · latest</div><h4>Round 1325 progress</h4><p class="dim">1325: Main实现并接通HNP01请求缓存、共享预算、高度图搜索/重建/平滑；主机和内存各5项目标、40条未改原版与1条零足迹缓存修正对照及A57/NVK通过。实际黑鹰持有7路点、前视游标1且无故障；正常New Game主机156帧/内存172帧推进至AI ActionTrack node528，退出归零</p><p class="dim">1329: Main接通go_Shoot真实34/2入队、Gun共用射击周期和拥有型通知；106条新增原版观察、主机/内存各7项与A57/NVK通过。正常New Game主机214帧/内存225帧越过Lua缺失，当前在真实空袭发射器的派生发射缺口明确失败，请求保留、未扣弹，退出归零。完整序章包新增0，NRO/S</p><p class="dim">1330: Main接入目标/精度/共享随机散布、真实预算与独立炮弹出生，七组件构造及mid状态/发射警戒事件走通；324条瞄准、288条运动和117条事件对照通过，主机/内存各9项与A57/NVK通过。正常New Game主机215帧/内存217帧均停在10474710真实炮弹拖尾创建，未伪造射击完成，退出归</p><p class="dim">1331: Main接通炮弹拖尾参数、真实Creator/Effect/Primitive0x2000、材质持有、锚点、停止和清退；197条原版对照、主机/内存各10项受影响检查及A57/NVK通过。正常New Game主机219帧/内存223帧炮弹飞行0.133332秒，停在node81缺失go_Delete</p></div>
   <!--/AUTO-LATEST-->
     <div class="ev"><div class="d">2026-11-02 · R1125–1130</div><h4>ExceptionFE / PUI pages / CKL checkpoints / script frames</h4>
       <p class="dim">Exception page six functions with GFX/text/textures, 13 PUI pages and 281 actions, CKL global capture/restore with CPG holds, real Lua delay queue and checkpoints, script frames (pause gate/stack cleanup/GC); default mission still 10825200/ready0/GameInit0.</p></div>
@@ -323,7 +325,7 @@
     <div class="flex">
       <div>
         <div><b style="color:var(--bone)">PROTOTYPE / SWITCH</b> · Native Horizon reimplementation</div>
-        <div class="fine">Updated 2026-11-07 · Round 1318 · Delivery 6e4b7b79f221983eb2454ee12d0bf65ebf65ebf65ebf65ede2a62f246c98f246c98f246c98f246c98</div>
+        <div class="fine">Updated 2026-11-07 · Round 1331 · Delivery f1b688d6e4b7b79f221983eb2454ee12d0bf65ebf65ebf65ebf65ede2a62f246c98f246c98f246c98f246c98</div>
         <div class="fine">Source may be released · blocked if the project moves to NVN · NRO only for now</div>
       </div>
       <div>
